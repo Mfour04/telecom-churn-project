@@ -68,7 +68,11 @@ api:
   workers: 1
   model_path: "models/best_model.pkl"
   preprocessor_path: "models/preprocessor.pkl"
+  thresholds_path: "models/feature_thresholds.yaml"
 
+feature_thresholds:
+  monthly_charges_median: null
+  
 logging:
   level: "INFO"
   format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

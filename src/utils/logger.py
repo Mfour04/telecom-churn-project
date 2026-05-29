@@ -16,7 +16,7 @@ def get_logger(name: str, level: str = "INFO") -> logging.Logger:
     if logger.handlers:
         return logger
 
-    logger.setLevel(getattr(logging, level))
+    logger.setLevel(getattr(logging, level.upper(), logging.INFO))
     
     formatter = logging.Formatter(
         fmt="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
