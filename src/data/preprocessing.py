@@ -1,19 +1,27 @@
+
+import sys
+from pathlib import Path
+_PROJECT_ROOT = Path(__file__).resolve().parents[2]  # src/data/../../  =  project root
+if str(_PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROJECT_ROOT))
+
 import pandas as pd
-import numpy as np 
+import numpy as np
 import yaml
 import joblib
 from pathlib import Path
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
-from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
+from sklearn.model_selection import train_test_split
+from sklearn.impute import SimpleImputer
 
 from src.utils.logger import get_logger
 
 logger = get_logger(__name__)
 
+# Các cột dịch vụ dùng để đếm num_services
 SERVICE_COLS = [
     "PhoneService", "MultipleLines", "InternetService",
     "OnlineSecurity", "OnlineBackup", "DeviceProtection",
@@ -23,32 +31,45 @@ SERVICE_COLS = [
 # Giá trị "không dùng" — không phải "No" thông thường
 NON_SERVICE_VALUES = {"No", "No internet service", "No phone service"}
 
-def load_config(config_path: str = "configs/config.yaml") -> dict:
-    """Load configuration from a YAML file."""
-    with open(config_path, 'r') as file:
-        return yaml.safe_load(file)
 
-def load_data(file_path: str) -> pd.DataFrame:
+# ── Config
+
+def load_config(config_path: str = "configs/config.yaml") -> dict:
+    with open(config_path, "r") as f:
+        return yaml.safe_load(f)
+
+
+# Data Loading 
+
+def load_data(filepath: str) -> pd.DataFrame:
     """
-    Load data from a CSV file.
+    Load raw CSV to DataFrame.
 
     Args:
-        file_path (str): The path to the CSV file. 
-    
+        filepath: Path to the CSV file
+
     Returns:
-        Raw DataFrame
+        Unprocessed Raw DataFrame
     """
-    logger.info(f"Loading data from {file_path}")
-    df = pd.read_csv(file_path)
-    logger.info(f"Data loaded: {df.shape[0]} rows and {df.shape[1]} columns")
+    logger.info(f"Loading data from: {filepath}")
+    df = pd.read_csv(filepath)
+    logger.info(f"Loaded: {df.shape[0]:,} rows x {df.shape[1]} columns")
     return df
+
+
+# Data Cleaning
 
 def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Clean the raw DataFrame by handling missing values and encoding categorical variables.
+   Handling raw data quality issues.
+
+    Issues addressed:
+    1. TotalCharges is a string, with a value of " " (space) when tenure=0
+    2. Customer ID has no predicted value → drop
+    3. Churn "Yes"/"No" → 1/0
 
     Args:
-        df (pd.DataFrame): The raw DataFrame to be cleaned.
+        df: Raw DataFrame
 
     Returns:
         Cleaned DataFrame
@@ -56,10 +77,9 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     logger.info("Cleaning data...")
     df = df.copy()
 
-    # Fix TotalCharges: convert to numeric (some values are whitespace strings)
-    df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce')
+    # TotalCharges
+    df["TotalCharges"] = pd.to_numeric(df["TotalCharges"], errors="coerce")
 
-    # Impute missing values in TotalCharges with median
     missing_mask = df["TotalCharges"].isna()
     n_missing = missing_mask.sum()
 
@@ -71,24 +91,27 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
         )
         logger.info(
             f"Imputed {n_missing} missing TotalCharges "
-            f"using MonthlyCharges × tenure (all were tenure=0 → result=0.0)"
+            f"using MonthlyCharges x tenure (all were tenure=0 -> result=0.0)"
         )
-    # drop customerID as it's not useful for modeling
+
+    # customerID
     if "customerID" in df.columns:
         df = df.drop(columns=["customerID"])
         logger.info("Dropped customerID (not predictive)")
 
-    # Encode target variable: Yes -> 1, No -> 0
+    # Target encoding
     if df["Churn"].dtype == object:
         df["Churn"] = df["Churn"].map({"Yes": 1, "No": 0})
 
+    # Check after cleaning
     remaining_nulls = df.isnull().sum().sum()
     churn_rate = df["Churn"].mean()
-    logger.info(f"After cleaning — nulls: {remaining_nulls} | churn rate: {churn_rate:.1%}")
+    logger.info(f"After cleaning - nulls: {remaining_nulls} | churn rate: {churn_rate:.1%}")
 
     return df
 
-# ── Feature Thresholds ────────────────────────────────────────────────────────
+
+# Feature Thresholds
 
 def compute_feature_thresholds(df_train: pd.DataFrame) -> dict:
     """
@@ -103,8 +126,6 @@ def compute_feature_thresholds(df_train: pd.DataFrame) -> dict:
     Dict containing the calculated thresholds
     """
     thresholds = {
-        # Ngưỡng phân loại high_charges
-        # Dùng median thay vì hardcode 65 → tự thích nghi với dữ liệu
         "monthly_charges_median": float(df_train["MonthlyCharges"].median()),
     }
 
@@ -126,12 +147,12 @@ def save_feature_thresholds(thresholds: dict, path: str) -> None:
     Path(path).parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w") as f:
         yaml.dump({"feature_thresholds": thresholds}, f, default_flow_style=False)
-    logger.info(f"Feature thresholds saved → {path}")
+    logger.info(f"Feature thresholds saved -> {path}")
 
 
 def load_feature_thresholds(path: str) -> dict:
     """
-    Load thresholds saved from the YAML file.
+    Load saved thresholds from the YAML file.
 
     Args:
     Path: File path (e.g., models/feature_thresholds.yaml)
@@ -140,7 +161,7 @@ def load_feature_thresholds(path: str) -> dict:
     Dict thresholds
 
     Raises:
-    FileNotFoundError: If the file does not exist (not yet trained)
+    FileNotFoundError: If the file does not exist (not trained)
     """
     threshold_path = Path(path)
     if not threshold_path.exists():
@@ -156,44 +177,59 @@ def load_feature_thresholds(path: str) -> dict:
     logger.info(f"Loaded feature thresholds from {path}: {thresholds}")
     return thresholds
 
+
+# ── Feature Engineering ───────────────────────────────────────────────────────
+
 def feature_engineering(df: pd.DataFrame, thresholds: dict) -> pd.DataFrame:
     """
-    Perform feature engineering on the cleaned DataFrame.
+    Create new features from existing data.
+
+    Requires thresholds as a parameter — DO NOT recalculate from df.
+    This ensures that train/test/inference use the same threshold.
 
     Args:
-        df (pd.DataFrame): The cleaned DataFrame to be transformed.
-        thresholds (dict): Dictionary containing the feature thresholds.
+    df: Cleaned DataFrame
+    thresholds: Dict from compute_feature_thresholds() or load_feature_thresholds()
+    Required key: "monthly_charges_median"
 
     Returns:
-        DataFrame with engineered features
+    DataFrame with newly added features
     """
-    logger.info("Performing feature engineering...")
+    logger.info("Engineering features...")
+    df = df.copy()
 
-    #Tenure groups
-    df['tenure_group'] = pd.cut(
-        df['tenure'], 
-        bins = [0, 12, 24, 48, 72],
-        labels = ['0-1yr', '1-2yr', '2-4yr', '4-6yr'],
-        include_lowest=True,
-    ).astype(str)
+    # ── Feature 1: tenure_group ───────────────────────────────────────────────
+    df["tenure_group"] = pd.cut(
+    df["tenure"],
+    bins=[0, 12, 24, 48, 72],
+    labels=["0-1yr", "1-2yr", "2-4yr", "4-6yr"],
+    include_lowest=True,
+    )
 
-    #High monthly charges flag 
+    df["tenure_group"] = (
+        df["tenure_group"]
+        .cat.add_categories(["Unknown"])
+        .fillna("Unknown")
+        .astype(str)
+    )
+    # ── Feature 2: high_charges ───────────────────────────────────────────────
     monthly_charges_median = thresholds["monthly_charges_median"]
     df["high_charges"] = (df["MonthlyCharges"] > monthly_charges_median).astype(int)
 
     logger.info(
         f"high_charges threshold (train median): {monthly_charges_median:.2f}$ "
-        f"→ {df['high_charges'].mean():.1%} of records flagged as high"
+        f"-> {df['high_charges'].mean():.1%} of records flagged as high"
     )
 
-    #Number of services subscribed
-    available_services = [c for c in SERVICE_COLS if c in df.columns]
-    df['num_services'] = df[available_services].apply(
+    # ── Feature 3: num_services ───────────────────────────────────────────────
+    available_service_cols = [c for c in SERVICE_COLS if c in df.columns]
+    df["num_services"] = df[available_service_cols].apply(
         lambda row: sum(1 for v in row if v not in NON_SERVICE_VALUES),
-        axis=1
+        axis=1,
     )
-    #Monthly charges per service
-    df['charges_per_service'] = df['MonthlyCharges'] / (df['num_services'] + 1)
+
+    # ── Feature 4: charge_per_service ─────────────────────────────────────────
+    df["charge_per_service"] = df["MonthlyCharges"] / (df["num_services"] + 1)
 
     logger.info(
         f"Features added: tenure_group, high_charges, num_services, charge_per_service "
@@ -201,129 +237,175 @@ def feature_engineering(df: pd.DataFrame, thresholds: dict) -> pd.DataFrame:
     )
     return df
 
-def build_preprocessor (numerical_features: list, categorical_features: list) -> ColumnTransformer:
+
+# ── Sklearn Preprocessor ──────────────────────────────────────────────────────
+
+def build_preprocessor(
+    numerical_features: list,
+    categorical_features: list,
+) -> ColumnTransformer:
     """
-    Build a preprocessor for numerical and categorical features.
+    Build sklearn ColumnTransformer to handle 2 types of features.
+
+    Numerical pipeline:
+    SimpleImputer(median) → StandardScaler
+
+    Categorical pipeline:
+    SimpleImputer(most_frequent) → OneHotEncoder
 
     Args:
-        numerical_features (list): List of numerical feature names.
-        categorical_features (list): List of categorical feature names.
+    numerical_features: List of numeric column names
+    categorical_features: List of categorical column names
 
     Returns:
-        A ColumnTransformer object that can be used in a pipeline.
+    ColumnTransformer not yet fitted
     """
     numerical_pipeline = Pipeline([
-        ('imputer', SimpleImputer(strategy='median')),
-        ('scaler', StandardScaler())
+        ("imputer", SimpleImputer(strategy="median")),
+        ("scaler", StandardScaler()),
     ])
 
     categorical_pipeline = Pipeline([
-        ('imputer', SimpleImputer(strategy='most_frequent')),
-        ('encoder', OneHotEncoder(handle_unknown='ignore', sparse_output=False))
+        ("imputer", SimpleImputer(strategy="most_frequent")),
+        (
+            "encoder",
+            OneHotEncoder(
+                handle_unknown="ignore",  # giá trị lạ lúc inference → vector 0
+                sparse_output=False,
+            ),
+        ),
     ])
 
-    preprocessor = ColumnTransformer([
-        ('num', numerical_pipeline, numerical_features),
-        ('cat', categorical_pipeline, categorical_features)
-    ], remainder='drop')
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ("num", numerical_pipeline, numerical_features),
+            ("cat", categorical_pipeline, categorical_features),
+        ],
+        remainder="drop",  # bỏ qua các cột không được khai báo
+    )
 
     return preprocessor
 
+
+# ── Full Pipeline ─────────────────────────────────────────────────────────────
+
 def prepare_data(config: dict) -> tuple:
     """
-    Load, clean, and engineer features from the raw data, then split into training and testing sets.
+    Pipeline đầy đủ từ raw data đến dữ liệu sẵn sàng train.
+
+    Thứ tự:
+        1. load_data
+        2. clean_data
+        3. train_test_split  ← PHẢI chia trước khi tính threshold
+        4. compute_feature_thresholds(X_train only)
+        5. save_feature_thresholds
+        6. feature_engineering(train, thresholds)
+        7. feature_engineering(test, thresholds)   ← dùng cùng threshold
+        8. build_preprocessor → fit(train) → transform(train + test)
+        9. save preprocessor
 
     Args:
-        config (dict): Configuration dictionary containing file paths and parameters.
+        config: Dict từ load_config()
 
     Returns:
-        Tuple of (X_train, X_test, y_train, y_test)
+        (X_train, X_test, y_train, y_test, preprocessor, feature_names)
     """
-    #Load and clean
-    df = load_data(config['paths']['raw_data'])
+    # ── 1. Load & clean ───────────────────────────────────────────────────────
+    df = load_data(config["paths"]["raw_data"])
     df = clean_data(df)
 
-    #Define features and target
-    target = config['data']['target_column']
+    # ── 2. Tách target ────────────────────────────────────────────────────────
+    target = config["data"]["target_column"]
     X_raw = df.drop(columns=[target])
     y = df[target]
+
+    # ── 3. Train/test split TRƯỚC feature engineering ─────────────────────────
+    # Quan trọng: tính threshold trên train set → split phải đến trước
     X_train_raw, X_test_raw, y_train, y_test = train_test_split(
         X_raw, y,
-        test_size=config['data']['test_size'],
-        random_state=config['data']['random_state'],
-        stratify=y
+        test_size=config["data"]["test_size"],
+        random_state=config["data"]["random_state"],
+        stratify=y,
     )
-    logger.info(f"Initial train-test split: {X_train_raw.shape[0]} train samples, {X_test_raw.shape[0]} test samples")
+    logger.info(f"Split -> train: {len(X_train_raw):,} | test: {len(X_test_raw):,}")
 
-    #Caculate thresholds from train set and save for later use
+    # ── 4. Tính threshold CHỈ từ train set ───────────────────────────────────
     thresholds = compute_feature_thresholds(X_train_raw)
-    save_feature_thresholds(thresholds, config['api']['feature_thresholds_path'])
 
-    #Feature engineering with thresholds
+    # ── 5. Lưu thresholds ────────────────────────────────────────────────────
+    save_feature_thresholds(thresholds, config["api"]["thresholds_path"])
+
+    # ── 6. Feature engineering với threshold đã tính ─────────────────────────
     X_train_eng = feature_engineering(X_train_raw, thresholds)
-    X_test_eng = feature_engineering(X_test_raw, thresholds)
+    X_test_eng  = feature_engineering(X_test_raw,  thresholds)  # dùng cùng threshold
 
-    #Save processed data (train + test) for EDA and future reference
-    processed_path = Path(config['paths']['processed_data'])
-    processed_path.parent.mkdir(parents=True, exist_ok=True)
+    # ── 7. Lưu processed data (train + test gộp lại) ─────────────────────────
+    processed_path = Path(config["paths"]["processed_data"])
+    processed_path.mkdir(parents=True, exist_ok=True)
 
     df_processed = pd.concat([X_train_eng, X_test_eng])
     df_processed[target] = pd.concat([y_train, y_test])
-    df_processed.to_csv(processed_path, index=False)
-    logger.info(f"Processed data saved to {processed_path} (train + test combined)")
+    df_processed.to_csv(processed_path / "processed_data.csv", index=False)
+    logger.info(f"Processed data saved -> {processed_path / 'processed_data.csv'}")
 
-    #Define feature lists
-    numerical_features = config['data']['numerical_features'] + [
-        'high_charges', 'num_services', 'charges_per_service'
+    # ── 8. Định nghĩa feature lists ───────────────────────────────────────────
+    numerical_features = config["data"]["numerical_features"] + [
+        "high_charges", "num_services", "charge_per_service"
     ]
+    categorical_features = config["data"]["categorical_features"] + ["tenure_group"]
 
-    categorical_features = config['data']['categorical_features'] + ['tenure_group']
-
-    #Filter to only existing colums
-    numerical_features = [f for f in numerical_features if f in X_train_eng.columns]
+    # Chỉ giữ các cột thực sự tồn tại trong DataFrame
+    numerical_features   = [f for f in numerical_features   if f in X_train_eng.columns]
     categorical_features = [f for f in categorical_features if f in X_train_eng.columns]
 
     X_train_feat = X_train_eng[numerical_features + categorical_features]
-    X_test_feat = X_test_eng[numerical_features + categorical_features]
-    y = y_train
+    X_test_feat  = X_test_eng[numerical_features  + categorical_features]
 
-    #Build and fit preprocessor 
+    # ── 9. Build & fit preprocessor ──────────────────────────────────────────
     preprocessor = build_preprocessor(numerical_features, categorical_features)
+
+    # fit CHỈ trên train, transform trên cả hai
     X_train_processed = preprocessor.fit_transform(X_train_feat)
-    X_test_processed = preprocessor.transform(X_test_feat)  
+    X_test_processed  = preprocessor.transform(X_test_feat)
 
-    #Get feature names after encoding
-
-    try: 
-        cat_encoded = preprocessor.named_transformers_['cat']['encoder']
-        cat_feature_names = cat_encoded.get_feature_names_out(categorical_features).tolist()
+    # ── 10. Lấy tên feature sau OneHotEncoder ─────────────────────────────────
+    try:
+        cat_encoder = preprocessor.named_transformers_["cat"]["encoder"]
+        cat_feature_names = cat_encoder.get_feature_names_out(categorical_features).tolist()
     except Exception:
-        cat_feature_names = [f"cat{i}" for i in range(X_train_processed.shape[1] - len(numerical_features))]
-    
+        n_cat = X_train_processed.shape[1] - len(numerical_features)
+        cat_feature_names = [f"cat_{i}" for i in range(n_cat)]
+
     feature_names = numerical_features + cat_feature_names
     logger.info(f"Total features after encoding: {len(feature_names)}")
-                
-    #Save preprocessor 
-    model_dir = Path(config['api']['model_path']).parent
+
+    # ── 11. Lưu preprocessor ─────────────────────────────────────────────────
+    model_dir = Path(config["api"]["model_path"]).parent
     model_dir.mkdir(parents=True, exist_ok=True)
-    joblib.dump(preprocessor, config['api']['preprocessor_path'])
-    logger.info(f"Preprocessor saved to {config['api']['preprocessor_path']}")
+    joblib.dump(preprocessor, config["api"]["preprocessor_path"])
+    logger.info(f"Preprocessor saved -> {config['api']['preprocessor_path']}")
 
-    return X_train_processed, X_test_processed, y_train.values, y_test.values, feature_names
+    return X_train_processed, X_test_processed, y_train, y_test, preprocessor, feature_names
 
-def preprocess_single(data: dict, preprocessor, config:dict) -> np.array:
+
+# ── Inference Helper ──────────────────────────────────────────────────────────
+
+def preprocess_single(data: dict, preprocessor, config: dict) -> np.ndarray:
     """
-    Preprocess a single data point for prediction.
+    Process a record for inference (used in the API).
 
-    Args:
-        data (dict): A dictionary containing the raw input data.
-        preprocessor: The fitted preprocessor to transform the input data.
-        config (dict): Configuration dictionary containing feature information.
+    Reuse the correct threshold saved from the ship's initial training.
 
-    Returns:
-        A numpy array of the preprocessed input data ready for prediction.
+    The most complete feature at the time the model is trained.
+
+    Inference:
+    data: A customer's Dict feature (from the API request)
+    preprocessor: Matched ColumnTransformer (loaded from preprocessor.pkl)
+    config: Dict config (to know the path threshold)
+
+    Return:
+    A numpy array (1, n_features) available to model.predict()
     """
-    #Convert to DataFrame
     df = pd.DataFrame([data])
 
     # ── Fix TotalCharges nếu cần ──────────────────────────────────────────────
@@ -339,7 +421,10 @@ def preprocess_single(data: dict, preprocessor, config:dict) -> np.array:
 
     return preprocessor.transform(df)
 
+
+# ── Entry point ───────────────────────────────────────────────────────────────
+
 if __name__ == "__main__":
     config = load_config()
-    X_train, X_test, y_train, y_test, feature_names = prepare_data(config)
-    logger.info(f"Data preprocessing completed successfully. Feature count: {len(feature_names)}")
+    X_train, X_test, y_train, y_test, preprocessor, feature_names = prepare_data(config)
+    logger.info(f"Preprocessing complete. Feature count: {len(feature_names)}")
