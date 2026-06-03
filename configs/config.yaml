@@ -71,8 +71,8 @@ api:
   thresholds_path: "models/feature_thresholds.yaml"
 
 feature_thresholds:
-  monthly_charges_median: null
-  
+  monthly_charges_median: null  
+
 logging:
   level: "INFO"
   format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

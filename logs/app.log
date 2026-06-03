@@ -1,0 +1,326 @@
+2026-06-02 14:50:36 - __main__ - INFO - Loading data from data/raw/Telco-Customer-Churn.csv
+2026-06-02 14:50:36 - __main__ - INFO - Data loaded: 7043 rows and 21 columns
+2026-06-02 14:50:36 - __main__ - INFO - Cleaning data...
+2026-06-02 14:50:36 - __main__ - INFO - Dropped customerID (not predictive)
+2026-06-02 14:50:36 - __main__ - INFO - After cleaning � nulls: 0 | churn rate: 26.5%
+2026-06-02 14:50:36 - __main__ - INFO - Initial train-test split: 5634 train samples, 1409 test samples
+2026-06-02 14:50:36 - __main__ - INFO - Computed feature thresholds from train set:
+2026-06-02 14:50:36 - __main__ - INFO -   monthly_charges_median: 70.5
+2026-06-02 14:52:44 - __main__ - INFO - Loading data from data/raw/Telco-Customer-Churn.csv
+2026-06-02 14:52:44 - __main__ - INFO - Data loaded: 7043 rows and 21 columns
+2026-06-02 14:52:44 - __main__ - INFO - Cleaning data...
+2026-06-02 14:52:44 - __main__ - INFO - Dropped customerID (not predictive)
+2026-06-02 14:52:44 - __main__ - INFO - After cleaning � nulls: 0 | churn rate: 26.5%
+2026-06-02 14:52:44 - __main__ - INFO - Initial train-test split: 5634 train samples, 1409 test samples
+2026-06-02 14:52:44 - __main__ - INFO - Computed feature thresholds from train set:
+2026-06-02 14:52:44 - __main__ - INFO -   monthly_charges_median: 70.5
+2026-06-02 14:54:15 - __main__ - INFO - Loading data from data/raw/Telco-Customer-Churn.csv
+2026-06-02 14:54:15 - __main__ - INFO - Data loaded: 7043 rows and 21 columns
+2026-06-02 14:54:15 - __main__ - INFO - Cleaning data...
+2026-06-02 14:54:15 - __main__ - INFO - Dropped customerID (not predictive)
+2026-06-02 14:54:15 - __main__ - INFO - After cleaning � nulls: 0 | churn rate: 26.5%
+2026-06-02 14:54:15 - __main__ - INFO - Initial train-test split: 5634 train samples, 1409 test samples
+2026-06-02 14:54:15 - __main__ - INFO - Computed feature thresholds from train set:
+2026-06-02 14:54:15 - __main__ - INFO -   monthly_charges_median: 70.5
+2026-06-02 14:57:40 - __main__ - INFO - Loading data from data/raw/Telco-Customer-Churn.csv
+2026-06-02 14:57:40 - __main__ - INFO - Data loaded: 7043 rows and 21 columns
+2026-06-02 14:57:40 - __main__ - INFO - Cleaning data...
+2026-06-02 14:57:40 - __main__ - INFO - Dropped customerID (not predictive)
+2026-06-02 14:57:40 - __main__ - INFO - After cleaning � nulls: 0 | churn rate: 26.5%
+2026-06-02 14:57:40 - __main__ - INFO - Initial train-test split: 5634 train samples, 1409 test samples
+2026-06-02 14:57:40 - __main__ - INFO - Computed feature thresholds from train set:
+2026-06-02 14:57:40 - __main__ - INFO -   monthly_charges_median: 70.5
+2026-06-02 15:02:07 | INFO     | __main__ | Loading data from data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv
+2026-06-02 15:03:01 | INFO     | __main__ | Loading data from data/raw/Telco-Customer-Churn.csv
+2026-06-02 15:03:01 | INFO     | __main__ | Data loaded: 7043 rows and 21 columns
+2026-06-02 15:03:01 | INFO     | __main__ | Cleaning data...
+2026-06-02 15:03:01 | INFO     | __main__ | Imputed 11 missing TotalCharges using MonthlyCharges × tenure (all were tenure=0 → result=0.0)
+2026-06-02 15:03:01 | INFO     | __main__ | Dropped customerID (not predictive)
+2026-06-02 15:03:01 | INFO     | __main__ | After cleaning — nulls: 0 | churn rate: 26.5%
+2026-06-02 15:03:01 | INFO     | __main__ | Initial train-test split: 5634 train samples, 1409 test samples
+2026-06-02 15:03:01 | INFO     | __main__ | Computed feature thresholds from train set:
+2026-06-02 15:03:01 | INFO     | __main__ |   monthly_charges_median: 70.5
+2026-06-02 15:05:11 | INFO     | __main__ | Loading data from data/raw/Telco-Customer-Churn.csv
+2026-06-02 15:05:11 | INFO     | __main__ | Data loaded: 7043 rows and 21 columns
+2026-06-02 15:05:11 | INFO     | __main__ | Cleaning data...
+2026-06-02 15:05:11 | INFO     | __main__ | Imputed 11 missing TotalCharges using MonthlyCharges × tenure (all were tenure=0 → result=0.0)
+2026-06-02 15:05:11 | INFO     | __main__ | Dropped customerID (not predictive)
+2026-06-02 15:05:11 | INFO     | __main__ | After cleaning — nulls: 0 | churn rate: 26.5%
+2026-06-02 15:05:11 | INFO     | __main__ | Initial train-test split: 5634 train samples, 1409 test samples
+2026-06-02 15:05:11 | INFO     | __main__ | Computed feature thresholds from train set:
+2026-06-02 15:05:11 | INFO     | __main__ |   monthly_charges_median: 70.5
+2026-06-02 15:05:11 | INFO     | __main__ | Feature thresholds saved → models/feature_thresholds.yaml
+2026-06-02 15:05:11 | INFO     | __main__ | Performing feature engineering...
+2026-06-02 15:05:11 | INFO     | __main__ | high_charges threshold (train median): 70.50$ → 49.9% of records flagged as high
+2026-06-02 15:05:11 | INFO     | __main__ | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-06-02 15:05:11 | INFO     | __main__ | Performing feature engineering...
+2026-06-02 15:05:11 | INFO     | __main__ | high_charges threshold (train median): 70.50$ → 48.2% of records flagged as high
+2026-06-02 15:05:11 | INFO     | __main__ | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-06-02 15:19:18 | INFO     | __main__ | Loading data from data/raw/Telco-Customer-Churn.csv
+2026-06-02 15:19:18 | INFO     | __main__ | Data loaded: 7043 rows and 21 columns
+2026-06-02 15:19:18 | INFO     | __main__ | Cleaning data...
+2026-06-02 15:19:18 | INFO     | __main__ | Imputed 11 missing TotalCharges using MonthlyCharges × tenure (all were tenure=0 → result=0.0)
+2026-06-02 15:19:18 | INFO     | __main__ | Dropped customerID (not predictive)
+2026-06-02 15:19:18 | INFO     | __main__ | After cleaning — nulls: 0 | churn rate: 26.5%
+2026-06-02 15:19:18 | INFO     | __main__ | Initial train-test split: 5634 train samples, 1409 test samples
+2026-06-02 15:19:18 | INFO     | __main__ | Computed feature thresholds from train set:
+2026-06-02 15:19:18 | INFO     | __main__ |   monthly_charges_median: 70.5
+2026-06-02 15:19:18 | INFO     | __main__ | Feature thresholds saved → models/feature_thresholds.yaml
+2026-06-02 15:19:18 | INFO     | __main__ | Performing feature engineering...
+2026-06-02 15:19:18 | INFO     | __main__ | high_charges threshold (train median): 70.50$ → 49.9% of records flagged as high
+2026-06-02 15:19:18 | INFO     | __main__ | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-06-02 15:19:18 | INFO     | __main__ | Performing feature engineering...
+2026-06-02 15:19:18 | INFO     | __main__ | high_charges threshold (train median): 70.50$ → 48.2% of records flagged as high
+2026-06-02 15:19:18 | INFO     | __main__ | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-06-02 15:19:18 | INFO     | __main__ | Processed data saved to data\processed\telco_processed.csv (train + test combined)
+2026-06-02 15:19:18 | INFO     | __main__ | Total features after encoding: 52
+2026-06-02 15:19:18 | INFO     | __main__ | Preprocessor saved to models/preprocessor.pkl
+2026-06-02 15:19:18 | INFO     | __main__ | Preprocessing complete. Feature count: 52
+2026-06-03 16:00:07 | INFO     | __main__ | Loading configuration...
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | Loading data from data/raw/Telco-Customer-Churn.csv
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | Data loaded: 7043 rows and 21 columns
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | Cleaning data...
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | Imputed 11 missing TotalCharges using MonthlyCharges × tenure (all were tenure=0 → result=0.0)
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | After cleaning — nulls: 0 | churn rate: 26.5%
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | Initial train-test split: 5634 train samples, 1409 test samples
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | Computed feature thresholds from train set:
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing |   monthly_charges_median: 70.5
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | Feature thresholds saved → models/feature_thresholds.yaml
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | Performing feature engineering...
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ → 49.9% of records flagged as high
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | Performing feature engineering...
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ → 48.2% of records flagged as high
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | Processed data saved to data\processed\telco_processed.csv (train + test combined)
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | Total features after encoding: 52
+2026-06-03 16:00:07 | INFO     | src.data.preprocessing | Preprocessor saved to models/preprocessor.pkl
+2026-06-03 16:00:07 | INFO     | __main__ | Data preparation completed.
+2026-06-03 16:03:41 | INFO     | __main__ | Loading configuration...
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | Loading data from data/raw/Telco-Customer-Churn.csv
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | Data loaded: 7043 rows and 21 columns
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | Cleaning data...
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | Imputed 11 missing TotalCharges using MonthlyCharges × tenure (all were tenure=0 → result=0.0)
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | After cleaning — nulls: 0 | churn rate: 26.5%
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | Initial train-test split: 5634 train samples, 1409 test samples
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | Computed feature thresholds from train set:
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing |   monthly_charges_median: 70.5
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | Feature thresholds saved → models/feature_thresholds.yaml
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | Performing feature engineering...
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ → 49.9% of records flagged as high
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | Performing feature engineering...
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ → 48.2% of records flagged as high
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | Processed data saved to data\processed\telco_processed.csv (train + test combined)
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | Total features after encoding: 52
+2026-06-03 16:03:41 | INFO     | src.data.preprocessing | Preprocessor saved to models/preprocessor.pkl
+2026-06-03 16:03:41 | INFO     | __main__ | Data preparation completed.
+2026-06-03 16:04:47 | INFO     | __main__ | Loading configuration...
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | Loading data from data/raw/Telco-Customer-Churn.csv
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | Data loaded: 7043 rows and 21 columns
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | Cleaning data...
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | Imputed 11 missing TotalCharges using MonthlyCharges × tenure (all were tenure=0 → result=0.0)
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | After cleaning — nulls: 0 | churn rate: 26.5%
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | Initial train-test split: 5634 train samples, 1409 test samples
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | Computed feature thresholds from train set:
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing |   monthly_charges_median: 70.5
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | Feature thresholds saved → models/feature_thresholds.yaml
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | Performing feature engineering...
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ → 49.9% of records flagged as high
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | Performing feature engineering...
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ → 48.2% of records flagged as high
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | Processed data saved to data\processed\telco_processed.csv (train + test combined)
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | Total features after encoding: 52
+2026-06-03 16:04:47 | INFO     | src.data.preprocessing | Preprocessor saved to models/preprocessor.pkl
+2026-06-03 16:04:47 | INFO     | __main__ | Data preparation completed.
+2026-06-03 16:04:49 | INFO     | __main__ | 
+=======================================================
+2026-06-03 16:04:49 | INFO     | __main__ | Training logistic_regression with run_id: e1612cb4ba0140d4a233b0c393826240
+2026-06-03 16:04:49 | INFO     | __main__ | =======================================================
+2026-06-03 16:24:50 | INFO     | __main__ | Starting training pipeline...
+2026-06-03 16:24:50 | INFO     | __main__ | Loading configuration...
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | Loading data from data/raw/Telco-Customer-Churn.csv
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | Data loaded: 7043 rows and 21 columns
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | Cleaning data...
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | Imputed 11 missing TotalCharges using MonthlyCharges × tenure (all were tenure=0 → result=0.0)
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | After cleaning — nulls: 0 | churn rate: 26.5%
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | Split -> train: 5,634 | test: 1,409
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | Computed feature thresholds from train set:
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing |   monthly_charges_median: 70.5
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | Feature thresholds saved → models/feature_thresholds.yaml
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | Performing feature engineering...
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ → 49.9% of records flagged as high
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | Performing feature engineering...
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ → 48.2% of records flagged as high
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | Processed data saved -> data\processed\processed_data.csv
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | Total features after encoding: 51
+2026-06-03 16:24:50 | INFO     | src.data.preprocessing | Preprocessor saved -> models/preprocessor.pkl
+2026-06-03 16:24:50 | INFO     | __main__ | X_train: (5634, 51) | y_train: (5634,)
+2026-06-03 16:24:50 | INFO     | __main__ | X_test:  (1409, 51)  | y_test:  (1409,)
+2026-06-03 16:24:50 | INFO     | __main__ | Features: 51
+2026-06-03 16:24:50 | INFO     | __main__ | 
+=======================================================
+2026-06-03 16:24:50 | INFO     | __main__ | Training logistic_regression with run_id: 445027aaae574d77b94564c45ce039e9
+2026-06-03 16:24:50 | INFO     | __main__ | =======================================================
+2026-06-03 16:32:52 | INFO     | __main__ | Starting training pipeline...
+2026-06-03 16:33:09 | INFO     | __main__ | Starting training pipeline...
+2026-06-03 16:49:28 | INFO     | __main__ | Starting training pipeline...
+2026-06-03 16:49:28 | INFO     | __main__ | Loading configuration...
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | Loading data from: data/raw/Telco-Customer-Churn.csv
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | Loaded: 7,043 rows x 21 columns
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | Cleaning data...
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | Imputed 11 missing TotalCharges using MonthlyCharges x tenure (all were tenure=0 -> result=0.0)
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | After cleaning - nulls: 0 | churn rate: 26.5%
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | Split -> train: 5,634 | test: 1,409
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | Computed feature thresholds from train set:
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing |   monthly_charges_median: 70.5
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | Feature thresholds saved -> models/feature_thresholds.yaml
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | Engineering features...
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 49.9% of records flagged as high
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | Engineering features...
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 48.2% of records flagged as high
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | Processed data saved -> data\processed\processed_data.csv
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | Total features after encoding: 52
+2026-06-03 16:49:28 | INFO     | src.data.preprocessing | Preprocessor saved -> models/preprocessor.pkl
+2026-06-03 16:49:28 | INFO     | __main__ | X_train: (5634, 52) | y_train: (5634,)
+2026-06-03 16:49:28 | INFO     | __main__ | X_test:  (1409, 52)  | y_test:  (1409,)
+2026-06-03 16:49:28 | INFO     | __main__ | Features: 52
+2026-06-03 16:49:29 | INFO     | __main__ | 
+=======================================================
+2026-06-03 16:49:29 | INFO     | __main__ | Training: xgboost | MLflow run: 4a7c6648
+2026-06-03 16:49:29 | INFO     | __main__ | =======================================================
+2026-06-03 16:49:32 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:32 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-06-03 16:49:32 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:32 | INFO     | src.models.evaluate |   accuracy            : 0.7622
+2026-06-03 16:49:32 | INFO     | src.models.evaluate |   precision           : 0.5382
+2026-06-03 16:49:32 | INFO     | src.models.evaluate |   recall              : 0.7353
+2026-06-03 16:49:32 | INFO     | src.models.evaluate |   f1_score            : 0.6215
+2026-06-03 16:49:32 | INFO     | src.models.evaluate |   roc_auc             : 0.8339
+2026-06-03 16:49:32 | INFO     | src.models.evaluate |   avg_precision       : 0.6373
+2026-06-03 16:49:32 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:32 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:32 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-06-03 16:49:32 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:32 | INFO     | src.models.evaluate |   accuracy            : 0.7622
+2026-06-03 16:49:32 | INFO     | src.models.evaluate |   precision           : 0.5382
+2026-06-03 16:49:32 | INFO     | src.models.evaluate |   recall              : 0.7353
+2026-06-03 16:49:32 | INFO     | src.models.evaluate |   f1_score            : 0.6215
+2026-06-03 16:49:32 | INFO     | src.models.evaluate |   roc_auc             : 0.8339
+2026-06-03 16:49:32 | INFO     | src.models.evaluate |   avg_precision       : 0.6373
+2026-06-03 16:49:32 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:34 | INFO     | src.models.evaluate | Confusion matrix saved to: reports\figures\xgboost\confusion_matrix.png
+2026-06-03 16:49:34 | INFO     | src.models.evaluate | ROC curve saved to: reports\figures\xgboost\roc_curve.png
+2026-06-03 16:49:35 | INFO     | src.models.evaluate | Feature importance plot saved to reports\figures\xgboost\feature_importance.png
+2026-06-03 16:49:35 | INFO     | src.models.evaluate | 
+              precision    recall  f1-score   support
+
+    No Churn       0.89      0.77      0.83      1035
+       Churn       0.54      0.74      0.62       374
+
+    accuracy                           0.76      1409
+   macro avg       0.71      0.75      0.72      1409
+weighted avg       0.80      0.76      0.77      1409
+
+2026-06-03 16:49:38 | INFO     | __main__ |   ROC-AUC : 0.8339
+2026-06-03 16:49:38 | INFO     | __main__ |   F1-Score: 0.6215
+2026-06-03 16:49:38 | INFO     | __main__ | 
+=======================================================
+2026-06-03 16:49:38 | INFO     | __main__ | Training: logistic_regression | MLflow run: c0da3b8a
+2026-06-03 16:49:38 | INFO     | __main__ | =======================================================
+2026-06-03 16:49:38 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:38 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-06-03 16:49:38 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:38 | INFO     | src.models.evaluate |   accuracy            : 0.7339
+2026-06-03 16:49:38 | INFO     | src.models.evaluate |   precision           : 0.4992
+2026-06-03 16:49:38 | INFO     | src.models.evaluate |   recall              : 0.7941
+2026-06-03 16:49:38 | INFO     | src.models.evaluate |   f1_score            : 0.6130
+2026-06-03 16:49:38 | INFO     | src.models.evaluate |   roc_auc             : 0.8416
+2026-06-03 16:49:38 | INFO     | src.models.evaluate |   avg_precision       : 0.6344
+2026-06-03 16:49:38 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:38 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:38 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-06-03 16:49:38 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:38 | INFO     | src.models.evaluate |   accuracy            : 0.7339
+2026-06-03 16:49:38 | INFO     | src.models.evaluate |   precision           : 0.4992
+2026-06-03 16:49:38 | INFO     | src.models.evaluate |   recall              : 0.7941
+2026-06-03 16:49:38 | INFO     | src.models.evaluate |   f1_score            : 0.6130
+2026-06-03 16:49:38 | INFO     | src.models.evaluate |   roc_auc             : 0.8416
+2026-06-03 16:49:38 | INFO     | src.models.evaluate |   avg_precision       : 0.6344
+2026-06-03 16:49:38 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:38 | INFO     | src.models.evaluate | Confusion matrix saved to: reports\figures\logistic_regression\confusion_matrix.png
+2026-06-03 16:49:39 | INFO     | src.models.evaluate | ROC curve saved to: reports\figures\logistic_regression\roc_curve.png
+2026-06-03 16:49:39 | INFO     | src.models.evaluate | 
+              precision    recall  f1-score   support
+
+    No Churn       0.91      0.71      0.80      1035
+       Churn       0.50      0.79      0.61       374
+
+    accuracy                           0.73      1409
+   macro avg       0.70      0.75      0.71      1409
+weighted avg       0.80      0.73      0.75      1409
+
+2026-06-03 16:49:40 | INFO     | __main__ |   ROC-AUC : 0.8416
+2026-06-03 16:49:40 | INFO     | __main__ |   F1-Score: 0.6130
+2026-06-03 16:49:40 | INFO     | __main__ | 
+=======================================================
+2026-06-03 16:49:40 | INFO     | __main__ | Training: random_forest | MLflow run: a658da75
+2026-06-03 16:49:40 | INFO     | __main__ | =======================================================
+2026-06-03 16:49:41 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:41 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-06-03 16:49:41 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:41 | INFO     | src.models.evaluate |   accuracy            : 0.7601
+2026-06-03 16:49:41 | INFO     | src.models.evaluate |   precision           : 0.5342
+2026-06-03 16:49:41 | INFO     | src.models.evaluate |   recall              : 0.7513
+2026-06-03 16:49:41 | INFO     | src.models.evaluate |   f1_score            : 0.6244
+2026-06-03 16:49:41 | INFO     | src.models.evaluate |   roc_auc             : 0.8406
+2026-06-03 16:49:41 | INFO     | src.models.evaluate |   avg_precision       : 0.6391
+2026-06-03 16:49:41 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:41 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:41 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-06-03 16:49:41 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:41 | INFO     | src.models.evaluate |   accuracy            : 0.7601
+2026-06-03 16:49:41 | INFO     | src.models.evaluate |   precision           : 0.5342
+2026-06-03 16:49:41 | INFO     | src.models.evaluate |   recall              : 0.7513
+2026-06-03 16:49:41 | INFO     | src.models.evaluate |   f1_score            : 0.6244
+2026-06-03 16:49:41 | INFO     | src.models.evaluate |   roc_auc             : 0.8406
+2026-06-03 16:49:41 | INFO     | src.models.evaluate |   avg_precision       : 0.6391
+2026-06-03 16:49:41 | INFO     | src.models.evaluate | ==================================================
+2026-06-03 16:49:42 | INFO     | src.models.evaluate | Confusion matrix saved to: reports\figures\random_forest\confusion_matrix.png
+2026-06-03 16:49:42 | INFO     | src.models.evaluate | ROC curve saved to: reports\figures\random_forest\roc_curve.png
+2026-06-03 16:49:43 | INFO     | src.models.evaluate | Feature importance plot saved to reports\figures\random_forest\feature_importance.png
+2026-06-03 16:49:43 | INFO     | src.models.evaluate | 
+              precision    recall  f1-score   support
+
+    No Churn       0.89      0.76      0.82      1035
+       Churn       0.53      0.75      0.62       374
+
+    accuracy                           0.76      1409
+   macro avg       0.71      0.76      0.72      1409
+weighted avg       0.80      0.76      0.77      1409
+
+2026-06-03 16:49:44 | INFO     | __main__ |   ROC-AUC : 0.8406
+2026-06-03 16:49:44 | INFO     | __main__ |   F1-Score: 0.6244
+2026-06-03 16:49:44 | INFO     | __main__ | Best model: logistic_regression (ROC-AUC = 0.8416)
+2026-06-03 16:49:44 | INFO     | __main__ | Model saved      -> models/best_model.pkl
+2026-06-03 16:49:44 | INFO     | __main__ | Preprocessor saved -> models/preprocessor.pkl
+2026-06-03 16:49:44 | INFO     | __main__ | Model Comparison:
+2026-06-03 16:49:44 | INFO     | __main__ |   Model                      ROC-AUC       F1  Precision   Recall
+2026-06-03 16:49:44 | INFO     | __main__ |   -----------------------------------------------------------------
+2026-06-03 16:49:44 | INFO     | __main__ |   xgboost                     0.8339   0.6215     0.5382   0.7353
+2026-06-03 16:49:44 | INFO     | __main__ |   logistic_regression         0.8416   0.6130     0.4992   0.7941 <- BEST
+2026-06-03 16:49:44 | INFO     | __main__ |   random_forest               0.8406   0.6244     0.5342   0.7513
+2026-06-03 16:49:44 | INFO     | __main__ | Training pipeline complete!
+2026-06-03 16:49:44 | INFO     | __main__ | Run: mlflow ui --port 5000  ->  http://localhost:5000
