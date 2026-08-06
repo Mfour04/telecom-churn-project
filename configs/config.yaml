@@ -76,3 +76,28 @@ feature_thresholds:
 logging:
   level: "INFO"
   format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+tuning: 
+  n_iter: 15 
+  cv_folds: 5
+  scoring: "roc_auc"
+
+  xgboost:
+    n_estimators: [100, 500]
+    max_depth: [3, 9]
+    learning_rate: [0.01, 0.19]
+    subsample: [0.6, 0.4]
+    colsample_bytree: [0.6, 0.4]
+    min_child_weight: [1, 10]
+
+  logistic_regression:
+    C: [0.01, 9.99]
+    solver: ["liblinear", "lbfgs", "sage"]
+    penalty: ["l2"]
+
+  random_forest:
+    n_estimators: [100, 400]
+    max_depth: [4, 12]
+    min_samples_split: [2, 10]
+    min_samples_leaf: [1, 5]
+    max_features: ["sqrt", "log2"]
