@@ -1,13 +1,14 @@
-import re
+import os
 import sys
 from pathlib import Path
 
 _PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(_PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROJECT_ROOT))
+if __name__ == "__main__":
+    os.chdir(_PROJECT_ROOT)  # config/artifact/log paths are relative to the project root
 
-from matplotlib.pylab import randint, uniform
-import yaml
+from scipy.stats import randint, uniform
 import joblib
 import mlflow
 import mlflow.sklearn
@@ -18,7 +19,6 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
 from sklearn.model_selection import RandomizedSearchCV, StratifiedKFold
-from sklearn.metrics import roc_auc_score
 
 from src.data.preprocessing import prepare_data, load_config, resolve_path
 from src.models.evaluate import generate_evaluation_report, compute_metrics
@@ -149,10 +149,10 @@ def tune_hyperparameter(
     cv_results = {
         f"cv_best_{scoring}": round(float(best_cv_score), 4),
         f"cv_mean_{scoring}": round(float(search.cv_results_["mean_test_score"].mean()), 4),
-        f"cv_std_{scoring}": round(float(search.cv_results_["std_test_score"].std()), 4),
+        f"cv_std_{scoring}": round(float(search.cv_results_["std_test_score"][search.best_index_]), 4),
     }
 
-    return search.best_estimator_, cv_results
+    return search.best_estimator_, best_params, cv_results
 
 def train_and_track(
     model_name: str,
@@ -167,20 +167,22 @@ def train_and_track(
     config: dict
 ) -> tuple:
     
-    mlflow.set_tracking_uri(str(resolve_path(config["mlflow"]["tracking_uri"])))
+    mlflow.set_tracking_uri(resolve_path(config["mlflow"]["tracking_uri"]).as_uri())
     mlflow.set_experiment(config["mlflow"]["experiment_name"])
 
-    with mlflow.start_run(run_name=f"{model_name}_tunned") as run:
+    with mlflow.start_run(run_name=f"{model_name}_tuned") as run:
         run_id = run.info.run_id
         logger.info(f"MLflow run: {run_id[:8]}")
 
-        mlflow.log_params("model_name", model_name)
-        mlflow.log_params("train_size", X_train.shape[0])
-        mlflow.log_params("test_size", X_test.shape[0])
-        mlflow.log_params("n_features", X_train.shape[1])
-        mlflow.log_params("tunning_n_iter", config["tuning"]["n_iter"])
-        mlflow.log_params("tuning_cv_folds", config["tuning"]["cv_folds"])
-        mlflow.log_params("tuning_scoring", config["tuning"]["scoring"])
+        mlflow.log_params({
+            "model_name": model_name,
+            "train_size": X_train.shape[0],
+            "test_size": X_test.shape[0],
+            "n_features": X_train.shape[1],
+            "tunning_n_iter": config["tuning"]["n_iter"],
+            "tuning_cv_folds": config["tuning"]["cv_folds"],
+            "tuning_scoring": config["tuning"]["scoring"],
+        })
 
         # Best params from tuning
         mlflow.log_params({f"best_{k}": v for k, v in best_params.items()})
@@ -205,9 +207,9 @@ def train_and_track(
         mlflow.log_artifacts(report_dir, artifact_path=f"evaluation_reports/{model_name}")
 
         if model_name == "xgboost":
-            mlflow.xgboost.log_model(model, artifact_path="model")
+            mlflow.xgboost.log_model(model, name="model")
         else:
-            mlflow.sklearn.log_model(model, artifact_path="model")
+            mlflow.sklearn.log_model(model, name="model")
 
         logger.info(f"Test ROC-AUC: {metrics['roc_auc']:.4f}")
         logger.info(f"Test F1-Score: {metrics['f1_score']:.4f}")
@@ -275,7 +277,7 @@ def run_training_pipeline() -> None:
         )
 
         results[name] = {
-            "model": model, 
+            "model": best_model, 
             "best_params": best_params, 
             "cv_results": cv_results,
             "metrics": metric,
@@ -289,7 +291,7 @@ def run_training_pipeline() -> None:
 
     # Summary table
     logger.info("Model Comparison:")
-    logger.info(f"  {'Model':<25} {'ROC-AUC':>8} {'F1':>8} {'Precision':>10} {'Recall':>8}")
+    logger.info(f"  {'Model':<25} {'CV AUC':>8} {'ROC-AUC':>9} {'F1':>7} {'Precision':>10} {'Recall':>8}")
     logger.info("  " + "-" * 65)
 
     sorted_results = sorted(
@@ -297,11 +299,12 @@ def run_training_pipeline() -> None:
         key=lambda x: x[1]["metrics"]["roc_auc"], reverse=True
         )
     for name, r in sorted_results:
-        m = r["metrics"],
+        m = r["metrics"]
         cv = r["cv_results"].get(f"cv_best_{config['tuning']['scoring']}", "N/A")
+        cv = f"{cv:.4f}" if isinstance(cv, (int, float)) else str(cv)
         tag = " <- BEST" if name == best_name else ""
         logger.info(
-            f"  {name:<25} {cv:>8.4f} {m['roc_auc']:>9.4f} "
+            f"  {name:<25} {cv:>8} {m['roc_auc']:>9.4f} "
             f"{m['f1_score']:>7.4f} {m['precision']:>10.4f} "
             f"{m['recall']:>8.4f}{tag}"
         )

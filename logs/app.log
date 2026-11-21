@@ -324,3 +324,566 @@ weighted avg       0.80      0.76      0.77      1409
 2026-06-03 16:49:44 | INFO     | __main__ |   random_forest               0.8406   0.6244     0.5342   0.7513
 2026-06-03 16:49:44 | INFO     | __main__ | Training pipeline complete!
 2026-06-03 16:49:44 | INFO     | __main__ | Run: mlflow ui --port 5000  ->  http://localhost:5000
+2026-11-21 12:54:36 | INFO     | __main__ | Starting training pipeline...
+2026-11-21 12:54:36 | INFO     | __main__ | Loading configuration...
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | Loading data from: data/raw/Telco-Customer-Churn.csv
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | Loaded: 7,043 rows x 21 columns
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | Cleaning data...
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | Imputed 11 missing TotalCharges using MonthlyCharges x tenure (all were tenure=0 -> result=0.0)
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | After cleaning - nulls: 0 | churn rate: 26.5%
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | Split -> train: 5,634 | test: 1,409
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | Computed feature thresholds from train set:
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing |   monthly_charges_median: 70.5
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | Feature thresholds saved -> models/feature_thresholds.yaml
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 49.9% of records flagged as high
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 48.2% of records flagged as high
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | Processed data saved -> data\processed\processed_data.csv
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | Total features after encoding: 52
+2026-11-21 12:54:36 | INFO     | src.data.preprocessing | Preprocessor saved -> models/preprocessor.pkl
+2026-11-21 12:54:36 | INFO     | __main__ | X_train: (5634, 52) | y_train: (5634,)
+2026-11-21 12:54:36 | INFO     | __main__ | X_test:  (1409, 52)  | y_test:  (1409,)
+2026-11-21 12:54:36 | INFO     | __main__ | Features: 52
+2026-11-21 12:54:36 | INFO     | __main__ | [XGBOOST]
+2026-11-21 12:54:36 | INFO     | __main__ | Hyperparameter tuning
+2026-11-21 12:54:36 | INFO     | __main__ | Starting hyperparameter tuning for xgboost: 15 iterations, 5-fold CV, scoring=roc_auc
+2026-11-21 12:54:36 | INFO     | __main__ | Scoring metric: roc_auc
+2026-11-21 12:54:55 | INFO     | __main__ |   Best CV roc_auc: 0.8468
+2026-11-21 12:54:55 | INFO     | __main__ |   Best params: {'colsample_bytree': np.float64(0.9754210836063001), 'learning_rate': np.float64(0.010147965509792722), 'max_depth': 6, 'n_estimators': 376, 'subsample': np.float64(0.8469926038510867)}
+2026-11-21 12:55:10 | INFO     | __main__ | Starting training pipeline...
+2026-11-21 12:55:10 | INFO     | __main__ | Loading configuration...
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | Loading data from: data/raw/Telco-Customer-Churn.csv
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | Loaded: 7,043 rows x 21 columns
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | Cleaning data...
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | Imputed 11 missing TotalCharges using MonthlyCharges x tenure (all were tenure=0 -> result=0.0)
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | After cleaning - nulls: 0 | churn rate: 26.5%
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | Split -> train: 5,634 | test: 1,409
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | Computed feature thresholds from train set:
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing |   monthly_charges_median: 70.5
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | Feature thresholds saved -> models/feature_thresholds.yaml
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 49.9% of records flagged as high
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 48.2% of records flagged as high
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | Processed data saved -> data\processed\processed_data.csv
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | Total features after encoding: 52
+2026-11-21 12:55:10 | INFO     | src.data.preprocessing | Preprocessor saved -> models/preprocessor.pkl
+2026-11-21 12:55:10 | INFO     | __main__ | X_train: (5634, 52) | y_train: (5634,)
+2026-11-21 12:55:10 | INFO     | __main__ | X_test:  (1409, 52)  | y_test:  (1409,)
+2026-11-21 12:55:10 | INFO     | __main__ | Features: 52
+2026-11-21 12:55:10 | INFO     | __main__ | [XGBOOST]
+2026-11-21 12:55:10 | INFO     | __main__ | Hyperparameter tuning
+2026-11-21 12:55:10 | INFO     | __main__ | Starting hyperparameter tuning for xgboost: 15 iterations, 5-fold CV, scoring=roc_auc
+2026-11-21 12:55:10 | INFO     | __main__ | Scoring metric: roc_auc
+2026-11-21 12:55:27 | INFO     | __main__ |   Best CV roc_auc: 0.8468
+2026-11-21 12:55:27 | INFO     | __main__ |   Best params: {'colsample_bytree': np.float64(0.9754210836063001), 'learning_rate': np.float64(0.010147965509792722), 'max_depth': 6, 'n_estimators': 376, 'subsample': np.float64(0.8469926038510867)}
+2026-11-21 12:55:27 | INFO     | __main__ | MLflow run: f7f24955
+2026-11-21 12:55:27 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:55:27 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:55:27 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:55:27 | INFO     | src.models.evaluate |   accuracy            : 0.7615
+2026-11-21 12:55:27 | INFO     | src.models.evaluate |   precision           : 0.5363
+2026-11-21 12:55:27 | INFO     | src.models.evaluate |   recall              : 0.7513
+2026-11-21 12:55:27 | INFO     | src.models.evaluate |   f1_score            : 0.6258
+2026-11-21 12:55:27 | INFO     | src.models.evaluate |   roc_auc             : 0.8415
+2026-11-21 12:55:27 | INFO     | src.models.evaluate |   avg_precision       : 0.6497
+2026-11-21 12:55:27 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:55:27 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:55:27 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:55:27 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:55:27 | INFO     | src.models.evaluate |   accuracy            : 0.7615
+2026-11-21 12:55:27 | INFO     | src.models.evaluate |   precision           : 0.5363
+2026-11-21 12:55:27 | INFO     | src.models.evaluate |   recall              : 0.7513
+2026-11-21 12:55:27 | INFO     | src.models.evaluate |   f1_score            : 0.6258
+2026-11-21 12:55:27 | INFO     | src.models.evaluate |   roc_auc             : 0.8415
+2026-11-21 12:55:27 | INFO     | src.models.evaluate |   avg_precision       : 0.6497
+2026-11-21 12:55:27 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:55:29 | INFO     | src.models.evaluate | Confusion matrix saved to: D:\Python\ai-project\reports\figures\xgboost\confusion_matrix.png
+2026-11-21 12:55:29 | INFO     | src.models.evaluate | ROC curve saved to: D:\Python\ai-project\reports\figures\xgboost\roc_curve.png
+2026-11-21 12:55:30 | INFO     | src.models.evaluate | Feature importance plot saved to D:\Python\ai-project\reports\figures\xgboost\feature_importance.png
+2026-11-21 12:55:30 | INFO     | src.models.evaluate | 
+              precision    recall  f1-score   support
+
+    No Churn       0.89      0.77      0.82      1035
+       Churn       0.54      0.75      0.63       374
+
+    accuracy                           0.76      1409
+   macro avg       0.72      0.76      0.73      1409
+weighted avg       0.80      0.76      0.77      1409
+
+2026-11-21 12:55:39 | INFO     | __main__ | Test ROC-AUC: 0.8415
+2026-11-21 12:55:39 | INFO     | __main__ | Test F1-Score: 0.6258
+2026-11-21 12:55:39 | INFO     | __main__ | [LOGISTIC_REGRESSION]
+2026-11-21 12:55:39 | INFO     | __main__ | Hyperparameter tuning
+2026-11-21 12:55:39 | INFO     | __main__ | Starting hyperparameter tuning for logistic_regression: 15 iterations, 5-fold CV, scoring=roc_auc
+2026-11-21 12:55:39 | INFO     | __main__ | Scoring metric: roc_auc
+2026-11-21 12:55:47 | INFO     | __main__ |   Best CV roc_auc: 0.8462
+2026-11-21 12:55:47 | INFO     | __main__ |   Best params: {'C': np.float64(1.5683852581586646), 'penalty': 'l2', 'solver': 'saga'}
+2026-11-21 12:55:47 | INFO     | __main__ | MLflow run: ca481b73
+2026-11-21 12:55:47 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:55:47 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:55:47 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:55:47 | INFO     | src.models.evaluate |   accuracy            : 0.7339
+2026-11-21 12:55:47 | INFO     | src.models.evaluate |   precision           : 0.4992
+2026-11-21 12:55:47 | INFO     | src.models.evaluate |   recall              : 0.7941
+2026-11-21 12:55:47 | INFO     | src.models.evaluate |   f1_score            : 0.6130
+2026-11-21 12:55:47 | INFO     | src.models.evaluate |   roc_auc             : 0.8416
+2026-11-21 12:55:47 | INFO     | src.models.evaluate |   avg_precision       : 0.6339
+2026-11-21 12:55:47 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:55:47 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:55:47 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:55:47 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:55:47 | INFO     | src.models.evaluate |   accuracy            : 0.7339
+2026-11-21 12:55:47 | INFO     | src.models.evaluate |   precision           : 0.4992
+2026-11-21 12:55:47 | INFO     | src.models.evaluate |   recall              : 0.7941
+2026-11-21 12:55:47 | INFO     | src.models.evaluate |   f1_score            : 0.6130
+2026-11-21 12:55:47 | INFO     | src.models.evaluate |   roc_auc             : 0.8416
+2026-11-21 12:55:47 | INFO     | src.models.evaluate |   avg_precision       : 0.6339
+2026-11-21 12:55:47 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:55:47 | INFO     | src.models.evaluate | Confusion matrix saved to: D:\Python\ai-project\reports\figures\logistic_regression\confusion_matrix.png
+2026-11-21 12:55:47 | INFO     | src.models.evaluate | ROC curve saved to: D:\Python\ai-project\reports\figures\logistic_regression\roc_curve.png
+2026-11-21 12:55:47 | INFO     | src.models.evaluate | 
+              precision    recall  f1-score   support
+
+    No Churn       0.91      0.71      0.80      1035
+       Churn       0.50      0.79      0.61       374
+
+    accuracy                           0.73      1409
+   macro avg       0.70      0.75      0.71      1409
+weighted avg       0.80      0.73      0.75      1409
+
+2026-11-21 12:55:48 | INFO     | __main__ | Test ROC-AUC: 0.8416
+2026-11-21 12:55:48 | INFO     | __main__ | Test F1-Score: 0.6130
+2026-11-21 12:55:48 | INFO     | __main__ | [RANDOM_FOREST]
+2026-11-21 12:55:48 | INFO     | __main__ | Hyperparameter tuning
+2026-11-21 12:55:48 | INFO     | __main__ | Starting hyperparameter tuning for random_forest: 15 iterations, 5-fold CV, scoring=roc_auc
+2026-11-21 12:55:48 | INFO     | __main__ | Scoring metric: roc_auc
+2026-11-21 12:56:09 | INFO     | __main__ |   Best CV roc_auc: 0.8471
+2026-11-21 12:56:09 | INFO     | __main__ |   Best params: {'max_depth': 7, 'max_features': 'sqrt', 'min_samples_leaf': 4, 'min_samples_split': 9, 'n_estimators': 230}
+2026-11-21 12:56:09 | INFO     | __main__ | MLflow run: 201c8e08
+2026-11-21 12:56:10 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:56:10 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:56:10 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:56:10 | INFO     | src.models.evaluate |   accuracy            : 0.7594
+2026-11-21 12:56:10 | INFO     | src.models.evaluate |   precision           : 0.5321
+2026-11-21 12:56:10 | INFO     | src.models.evaluate |   recall              : 0.7754
+2026-11-21 12:56:10 | INFO     | src.models.evaluate |   f1_score            : 0.6311
+2026-11-21 12:56:10 | INFO     | src.models.evaluate |   roc_auc             : 0.8423
+2026-11-21 12:56:10 | INFO     | src.models.evaluate |   avg_precision       : 0.6462
+2026-11-21 12:56:10 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:56:10 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:56:10 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:56:10 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:56:10 | INFO     | src.models.evaluate |   accuracy            : 0.7594
+2026-11-21 12:56:10 | INFO     | src.models.evaluate |   precision           : 0.5321
+2026-11-21 12:56:10 | INFO     | src.models.evaluate |   recall              : 0.7754
+2026-11-21 12:56:10 | INFO     | src.models.evaluate |   f1_score            : 0.6311
+2026-11-21 12:56:10 | INFO     | src.models.evaluate |   roc_auc             : 0.8423
+2026-11-21 12:56:10 | INFO     | src.models.evaluate |   avg_precision       : 0.6462
+2026-11-21 12:56:10 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:56:10 | INFO     | src.models.evaluate | Confusion matrix saved to: D:\Python\ai-project\reports\figures\random_forest\confusion_matrix.png
+2026-11-21 12:56:11 | INFO     | src.models.evaluate | ROC curve saved to: D:\Python\ai-project\reports\figures\random_forest\roc_curve.png
+2026-11-21 12:56:11 | INFO     | src.models.evaluate | Feature importance plot saved to D:\Python\ai-project\reports\figures\random_forest\feature_importance.png
+2026-11-21 12:56:11 | INFO     | src.models.evaluate | 
+              precision    recall  f1-score   support
+
+    No Churn       0.90      0.75      0.82      1035
+       Churn       0.53      0.78      0.63       374
+
+    accuracy                           0.76      1409
+   macro avg       0.72      0.76      0.73      1409
+weighted avg       0.80      0.76      0.77      1409
+
+2026-11-21 12:56:12 | INFO     | __main__ | Test ROC-AUC: 0.8423
+2026-11-21 12:56:12 | INFO     | __main__ | Test F1-Score: 0.6311
+2026-11-21 12:56:12 | INFO     | __main__ | Best model: random_forest (ROC-AUC = 0.8423)
+2026-11-21 12:56:12 | INFO     | __main__ | Model saved      -> models/best_model.pkl
+2026-11-21 12:56:12 | INFO     | __main__ | Preprocessor saved -> models/preprocessor.pkl
+2026-11-21 12:56:12 | INFO     | __main__ | Model Comparison:
+2026-11-21 12:56:12 | INFO     | __main__ |   Model                       CV AUC   ROC-AUC      F1  Precision   Recall
+2026-11-21 12:56:12 | INFO     | __main__ |   -----------------------------------------------------------------
+2026-11-21 12:56:12 | INFO     | __main__ |   random_forest               0.8471    0.8423  0.6311     0.5321   0.7754 <- BEST
+2026-11-21 12:56:12 | INFO     | __main__ |   logistic_regression         0.8462    0.8416  0.6130     0.4992   0.7941
+2026-11-21 12:56:12 | INFO     | __main__ |   xgboost                     0.8468    0.8415  0.6258     0.5363   0.7513
+2026-11-21 12:56:12 | INFO     | __main__ | Training pipeline complete!
+2026-11-21 12:56:12 | INFO     | __main__ | Run: mlflow ui --port 5000  ->  http://localhost:5000
+2026-11-21 12:56:12 | INFO     | __main__ | ============================================================
+2026-11-21 12:56:51 | INFO     | __main__ | Starting training pipeline...
+2026-11-21 12:56:51 | INFO     | __main__ | Loading configuration...
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | Loading data from: data/raw/Telco-Customer-Churn.csv
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | Loaded: 7,043 rows x 21 columns
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | Cleaning data...
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | Imputed 11 missing TotalCharges using MonthlyCharges x tenure (all were tenure=0 -> result=0.0)
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | After cleaning - nulls: 0 | churn rate: 26.5%
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | Split -> train: 5,634 | test: 1,409
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | Computed feature thresholds from train set:
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing |   monthly_charges_median: 70.5
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | Feature thresholds saved -> models/feature_thresholds.yaml
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 49.9% of records flagged as high
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 48.2% of records flagged as high
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | Processed data saved -> data\processed\processed_data.csv
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | Total features after encoding: 52
+2026-11-21 12:56:51 | INFO     | src.data.preprocessing | Preprocessor saved -> models/preprocessor.pkl
+2026-11-21 12:56:51 | INFO     | __main__ | X_train: (5634, 52) | y_train: (5634,)
+2026-11-21 12:56:51 | INFO     | __main__ | X_test:  (1409, 52)  | y_test:  (1409,)
+2026-11-21 12:56:51 | INFO     | __main__ | Features: 52
+2026-11-21 12:56:51 | INFO     | __main__ | [XGBOOST]
+2026-11-21 12:56:51 | INFO     | __main__ | Hyperparameter tuning
+2026-11-21 12:56:51 | INFO     | __main__ | Starting hyperparameter tuning for xgboost: 15 iterations, 5-fold CV, scoring=roc_auc
+2026-11-21 12:56:51 | INFO     | __main__ | Scoring metric: roc_auc
+2026-11-21 12:57:11 | INFO     | __main__ |   Best CV roc_auc: 0.8468
+2026-11-21 12:57:11 | INFO     | __main__ |   Best params: {'colsample_bytree': np.float64(0.9754210836063001), 'learning_rate': np.float64(0.010147965509792722), 'max_depth': 6, 'n_estimators': 376, 'subsample': np.float64(0.8469926038510867)}
+2026-11-21 12:57:11 | INFO     | __main__ | MLflow run: 5685ea7d
+2026-11-21 12:57:11 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:11 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:57:11 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:11 | INFO     | src.models.evaluate |   accuracy            : 0.7615
+2026-11-21 12:57:11 | INFO     | src.models.evaluate |   precision           : 0.5363
+2026-11-21 12:57:11 | INFO     | src.models.evaluate |   recall              : 0.7513
+2026-11-21 12:57:11 | INFO     | src.models.evaluate |   f1_score            : 0.6258
+2026-11-21 12:57:11 | INFO     | src.models.evaluate |   roc_auc             : 0.8415
+2026-11-21 12:57:11 | INFO     | src.models.evaluate |   avg_precision       : 0.6497
+2026-11-21 12:57:11 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:11 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:11 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:57:11 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:11 | INFO     | src.models.evaluate |   accuracy            : 0.7615
+2026-11-21 12:57:11 | INFO     | src.models.evaluate |   precision           : 0.5363
+2026-11-21 12:57:11 | INFO     | src.models.evaluate |   recall              : 0.7513
+2026-11-21 12:57:11 | INFO     | src.models.evaluate |   f1_score            : 0.6258
+2026-11-21 12:57:11 | INFO     | src.models.evaluate |   roc_auc             : 0.8415
+2026-11-21 12:57:11 | INFO     | src.models.evaluate |   avg_precision       : 0.6497
+2026-11-21 12:57:11 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:12 | INFO     | src.models.evaluate | Confusion matrix saved to: D:\Python\ai-project\reports\figures\xgboost\confusion_matrix.png
+2026-11-21 12:57:13 | INFO     | src.models.evaluate | ROC curve saved to: D:\Python\ai-project\reports\figures\xgboost\roc_curve.png
+2026-11-21 12:57:13 | INFO     | src.models.evaluate | Feature importance plot saved to D:\Python\ai-project\reports\figures\xgboost\feature_importance.png
+2026-11-21 12:57:13 | INFO     | src.models.evaluate | 
+              precision    recall  f1-score   support
+
+    No Churn       0.89      0.77      0.82      1035
+       Churn       0.54      0.75      0.63       374
+
+    accuracy                           0.76      1409
+   macro avg       0.72      0.76      0.73      1409
+weighted avg       0.80      0.76      0.77      1409
+
+2026-11-21 12:57:15 | INFO     | __main__ | Test ROC-AUC: 0.8415
+2026-11-21 12:57:15 | INFO     | __main__ | Test F1-Score: 0.6258
+2026-11-21 12:57:15 | INFO     | __main__ | [LOGISTIC_REGRESSION]
+2026-11-21 12:57:15 | INFO     | __main__ | Hyperparameter tuning
+2026-11-21 12:57:15 | INFO     | __main__ | Starting hyperparameter tuning for logistic_regression: 15 iterations, 5-fold CV, scoring=roc_auc
+2026-11-21 12:57:15 | INFO     | __main__ | Scoring metric: roc_auc
+2026-11-21 12:57:24 | INFO     | __main__ |   Best CV roc_auc: 0.8462
+2026-11-21 12:57:24 | INFO     | __main__ |   Best params: {'C': np.float64(1.5683852581586646), 'penalty': 'l2', 'solver': 'saga'}
+2026-11-21 12:57:24 | INFO     | __main__ | MLflow run: c3599c26
+2026-11-21 12:57:24 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:24 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:57:24 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:24 | INFO     | src.models.evaluate |   accuracy            : 0.7339
+2026-11-21 12:57:24 | INFO     | src.models.evaluate |   precision           : 0.4992
+2026-11-21 12:57:24 | INFO     | src.models.evaluate |   recall              : 0.7941
+2026-11-21 12:57:24 | INFO     | src.models.evaluate |   f1_score            : 0.6130
+2026-11-21 12:57:24 | INFO     | src.models.evaluate |   roc_auc             : 0.8416
+2026-11-21 12:57:24 | INFO     | src.models.evaluate |   avg_precision       : 0.6339
+2026-11-21 12:57:24 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:24 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:24 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:57:24 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:24 | INFO     | src.models.evaluate |   accuracy            : 0.7339
+2026-11-21 12:57:24 | INFO     | src.models.evaluate |   precision           : 0.4992
+2026-11-21 12:57:24 | INFO     | src.models.evaluate |   recall              : 0.7941
+2026-11-21 12:57:24 | INFO     | src.models.evaluate |   f1_score            : 0.6130
+2026-11-21 12:57:24 | INFO     | src.models.evaluate |   roc_auc             : 0.8416
+2026-11-21 12:57:24 | INFO     | src.models.evaluate |   avg_precision       : 0.6339
+2026-11-21 12:57:24 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:25 | INFO     | src.models.evaluate | Confusion matrix saved to: D:\Python\ai-project\reports\figures\logistic_regression\confusion_matrix.png
+2026-11-21 12:57:25 | INFO     | src.models.evaluate | ROC curve saved to: D:\Python\ai-project\reports\figures\logistic_regression\roc_curve.png
+2026-11-21 12:57:25 | INFO     | src.models.evaluate | 
+              precision    recall  f1-score   support
+
+    No Churn       0.91      0.71      0.80      1035
+       Churn       0.50      0.79      0.61       374
+
+    accuracy                           0.73      1409
+   macro avg       0.70      0.75      0.71      1409
+weighted avg       0.80      0.73      0.75      1409
+
+2026-11-21 12:57:26 | INFO     | __main__ | Test ROC-AUC: 0.8416
+2026-11-21 12:57:26 | INFO     | __main__ | Test F1-Score: 0.6130
+2026-11-21 12:57:26 | INFO     | __main__ | [RANDOM_FOREST]
+2026-11-21 12:57:26 | INFO     | __main__ | Hyperparameter tuning
+2026-11-21 12:57:26 | INFO     | __main__ | Starting hyperparameter tuning for random_forest: 15 iterations, 5-fold CV, scoring=roc_auc
+2026-11-21 12:57:26 | INFO     | __main__ | Scoring metric: roc_auc
+2026-11-21 12:57:46 | INFO     | __main__ |   Best CV roc_auc: 0.8471
+2026-11-21 12:57:46 | INFO     | __main__ |   Best params: {'max_depth': 7, 'max_features': 'sqrt', 'min_samples_leaf': 4, 'min_samples_split': 9, 'n_estimators': 230}
+2026-11-21 12:57:46 | INFO     | __main__ | MLflow run: da9f5645
+2026-11-21 12:57:46 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:46 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:57:46 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:46 | INFO     | src.models.evaluate |   accuracy            : 0.7594
+2026-11-21 12:57:46 | INFO     | src.models.evaluate |   precision           : 0.5321
+2026-11-21 12:57:46 | INFO     | src.models.evaluate |   recall              : 0.7754
+2026-11-21 12:57:46 | INFO     | src.models.evaluate |   f1_score            : 0.6311
+2026-11-21 12:57:46 | INFO     | src.models.evaluate |   roc_auc             : 0.8423
+2026-11-21 12:57:46 | INFO     | src.models.evaluate |   avg_precision       : 0.6462
+2026-11-21 12:57:46 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:46 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:46 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:57:46 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:46 | INFO     | src.models.evaluate |   accuracy            : 0.7594
+2026-11-21 12:57:46 | INFO     | src.models.evaluate |   precision           : 0.5321
+2026-11-21 12:57:46 | INFO     | src.models.evaluate |   recall              : 0.7754
+2026-11-21 12:57:46 | INFO     | src.models.evaluate |   f1_score            : 0.6311
+2026-11-21 12:57:46 | INFO     | src.models.evaluate |   roc_auc             : 0.8423
+2026-11-21 12:57:46 | INFO     | src.models.evaluate |   avg_precision       : 0.6462
+2026-11-21 12:57:46 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:57:46 | INFO     | src.models.evaluate | Confusion matrix saved to: D:\Python\ai-project\reports\figures\random_forest\confusion_matrix.png
+2026-11-21 12:57:47 | INFO     | src.models.evaluate | ROC curve saved to: D:\Python\ai-project\reports\figures\random_forest\roc_curve.png
+2026-11-21 12:57:47 | INFO     | src.models.evaluate | Feature importance plot saved to D:\Python\ai-project\reports\figures\random_forest\feature_importance.png
+2026-11-21 12:57:47 | INFO     | src.models.evaluate | 
+              precision    recall  f1-score   support
+
+    No Churn       0.90      0.75      0.82      1035
+       Churn       0.53      0.78      0.63       374
+
+    accuracy                           0.76      1409
+   macro avg       0.72      0.76      0.73      1409
+weighted avg       0.80      0.76      0.77      1409
+
+2026-11-21 12:57:48 | INFO     | __main__ | Test ROC-AUC: 0.8423
+2026-11-21 12:57:48 | INFO     | __main__ | Test F1-Score: 0.6311
+2026-11-21 12:57:48 | INFO     | __main__ | Best model: random_forest (ROC-AUC = 0.8423)
+2026-11-21 12:57:48 | INFO     | __main__ | Model saved      -> models/best_model.pkl
+2026-11-21 12:57:48 | INFO     | __main__ | Preprocessor saved -> models/preprocessor.pkl
+2026-11-21 12:57:48 | INFO     | __main__ | Model Comparison:
+2026-11-21 12:57:48 | INFO     | __main__ |   Model                       CV AUC   ROC-AUC      F1  Precision   Recall
+2026-11-21 12:57:48 | INFO     | __main__ |   -----------------------------------------------------------------
+2026-11-21 12:57:48 | INFO     | __main__ |   random_forest               0.8471    0.8423  0.6311     0.5321   0.7754 <- BEST
+2026-11-21 12:57:48 | INFO     | __main__ |   logistic_regression         0.8462    0.8416  0.6130     0.4992   0.7941
+2026-11-21 12:57:48 | INFO     | __main__ |   xgboost                     0.8468    0.8415  0.6258     0.5363   0.7513
+2026-11-21 12:57:48 | INFO     | __main__ | Training pipeline complete!
+2026-11-21 12:57:48 | INFO     | __main__ | Run: mlflow ui --port 5000  ->  http://localhost:5000
+2026-11-21 12:57:48 | INFO     | __main__ | ============================================================
+2026-11-21 12:58:07 | INFO     | __main__ | Starting training pipeline...
+2026-11-21 12:58:07 | INFO     | __main__ | Loading configuration...
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | Loading data from: data/raw/Telco-Customer-Churn.csv
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | Loaded: 7,043 rows x 21 columns
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | Cleaning data...
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | Imputed 11 missing TotalCharges using MonthlyCharges x tenure (all were tenure=0 -> result=0.0)
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | After cleaning - nulls: 0 | churn rate: 26.5%
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | Split -> train: 5,634 | test: 1,409
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | Computed feature thresholds from train set:
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing |   monthly_charges_median: 70.5
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | Feature thresholds saved -> models/feature_thresholds.yaml
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 49.9% of records flagged as high
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 48.2% of records flagged as high
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | Processed data saved -> data\processed\processed_data.csv
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | Total features after encoding: 52
+2026-11-21 12:58:07 | INFO     | src.data.preprocessing | Preprocessor saved -> models/preprocessor.pkl
+2026-11-21 12:58:07 | INFO     | __main__ | X_train: (5634, 52) | y_train: (5634,)
+2026-11-21 12:58:07 | INFO     | __main__ | X_test:  (1409, 52)  | y_test:  (1409,)
+2026-11-21 12:58:07 | INFO     | __main__ | Features: 52
+2026-11-21 12:58:07 | INFO     | __main__ | [XGBOOST]
+2026-11-21 12:58:07 | INFO     | __main__ | Hyperparameter tuning
+2026-11-21 12:58:07 | INFO     | __main__ | Starting hyperparameter tuning for xgboost: 15 iterations, 5-fold CV, scoring=roc_auc
+2026-11-21 12:58:07 | INFO     | __main__ | Scoring metric: roc_auc
+2026-11-21 12:58:23 | INFO     | __main__ |   Best CV roc_auc: 0.8468
+2026-11-21 12:58:23 | INFO     | __main__ |   Best params: {'colsample_bytree': np.float64(0.9754210836063001), 'learning_rate': np.float64(0.010147965509792722), 'max_depth': 6, 'n_estimators': 376, 'subsample': np.float64(0.8469926038510867)}
+2026-11-21 12:58:25 | INFO     | __main__ | MLflow run: 7766b3f3
+2026-11-21 12:58:25 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:25 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:58:25 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:25 | INFO     | src.models.evaluate |   accuracy            : 0.7615
+2026-11-21 12:58:25 | INFO     | src.models.evaluate |   precision           : 0.5363
+2026-11-21 12:58:25 | INFO     | src.models.evaluate |   recall              : 0.7513
+2026-11-21 12:58:25 | INFO     | src.models.evaluate |   f1_score            : 0.6258
+2026-11-21 12:58:25 | INFO     | src.models.evaluate |   roc_auc             : 0.8415
+2026-11-21 12:58:25 | INFO     | src.models.evaluate |   avg_precision       : 0.6497
+2026-11-21 12:58:25 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:25 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:25 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:58:25 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:25 | INFO     | src.models.evaluate |   accuracy            : 0.7615
+2026-11-21 12:58:25 | INFO     | src.models.evaluate |   precision           : 0.5363
+2026-11-21 12:58:25 | INFO     | src.models.evaluate |   recall              : 0.7513
+2026-11-21 12:58:25 | INFO     | src.models.evaluate |   f1_score            : 0.6258
+2026-11-21 12:58:25 | INFO     | src.models.evaluate |   roc_auc             : 0.8415
+2026-11-21 12:58:25 | INFO     | src.models.evaluate |   avg_precision       : 0.6497
+2026-11-21 12:58:25 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:25 | INFO     | src.models.evaluate | Confusion matrix saved to: D:\Python\ai-project\reports\figures\xgboost\confusion_matrix.png
+2026-11-21 12:58:25 | INFO     | src.models.evaluate | ROC curve saved to: D:\Python\ai-project\reports\figures\xgboost\roc_curve.png
+2026-11-21 12:58:25 | INFO     | src.models.evaluate | Feature importance plot saved to D:\Python\ai-project\reports\figures\xgboost\feature_importance.png
+2026-11-21 12:58:25 | INFO     | src.models.evaluate | 
+              precision    recall  f1-score   support
+
+    No Churn       0.89      0.77      0.82      1035
+       Churn       0.54      0.75      0.63       374
+
+    accuracy                           0.76      1409
+   macro avg       0.72      0.76      0.73      1409
+weighted avg       0.80      0.76      0.77      1409
+
+2026-11-21 12:58:26 | INFO     | __main__ | Test ROC-AUC: 0.8415
+2026-11-21 12:58:26 | INFO     | __main__ | Test F1-Score: 0.6258
+2026-11-21 12:58:26 | INFO     | __main__ | [LOGISTIC_REGRESSION]
+2026-11-21 12:58:26 | INFO     | __main__ | Hyperparameter tuning
+2026-11-21 12:58:26 | INFO     | __main__ | Starting hyperparameter tuning for logistic_regression: 15 iterations, 5-fold CV, scoring=roc_auc
+2026-11-21 12:58:26 | INFO     | __main__ | Scoring metric: roc_auc
+2026-11-21 12:58:31 | INFO     | __main__ |   Best CV roc_auc: 0.8462
+2026-11-21 12:58:31 | INFO     | __main__ |   Best params: {'C': np.float64(1.5683852581586646), 'penalty': 'l2', 'solver': 'saga'}
+2026-11-21 12:58:31 | INFO     | __main__ | MLflow run: e3d70014
+2026-11-21 12:58:31 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:31 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:58:31 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:31 | INFO     | src.models.evaluate |   accuracy            : 0.7339
+2026-11-21 12:58:31 | INFO     | src.models.evaluate |   precision           : 0.4992
+2026-11-21 12:58:31 | INFO     | src.models.evaluate |   recall              : 0.7941
+2026-11-21 12:58:31 | INFO     | src.models.evaluate |   f1_score            : 0.6130
+2026-11-21 12:58:31 | INFO     | src.models.evaluate |   roc_auc             : 0.8416
+2026-11-21 12:58:31 | INFO     | src.models.evaluate |   avg_precision       : 0.6339
+2026-11-21 12:58:31 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:31 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:31 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:58:31 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:31 | INFO     | src.models.evaluate |   accuracy            : 0.7339
+2026-11-21 12:58:31 | INFO     | src.models.evaluate |   precision           : 0.4992
+2026-11-21 12:58:31 | INFO     | src.models.evaluate |   recall              : 0.7941
+2026-11-21 12:58:31 | INFO     | src.models.evaluate |   f1_score            : 0.6130
+2026-11-21 12:58:31 | INFO     | src.models.evaluate |   roc_auc             : 0.8416
+2026-11-21 12:58:31 | INFO     | src.models.evaluate |   avg_precision       : 0.6339
+2026-11-21 12:58:31 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:32 | INFO     | src.models.evaluate | Confusion matrix saved to: D:\Python\ai-project\reports\figures\logistic_regression\confusion_matrix.png
+2026-11-21 12:58:32 | INFO     | src.models.evaluate | ROC curve saved to: D:\Python\ai-project\reports\figures\logistic_regression\roc_curve.png
+2026-11-21 12:58:32 | INFO     | src.models.evaluate | 
+              precision    recall  f1-score   support
+
+    No Churn       0.91      0.71      0.80      1035
+       Churn       0.50      0.79      0.61       374
+
+    accuracy                           0.73      1409
+   macro avg       0.70      0.75      0.71      1409
+weighted avg       0.80      0.73      0.75      1409
+
+2026-11-21 12:58:35 | INFO     | __main__ | Test ROC-AUC: 0.8416
+2026-11-21 12:58:35 | INFO     | __main__ | Test F1-Score: 0.6130
+2026-11-21 12:58:35 | INFO     | __main__ | [RANDOM_FOREST]
+2026-11-21 12:58:35 | INFO     | __main__ | Hyperparameter tuning
+2026-11-21 12:58:35 | INFO     | __main__ | Starting hyperparameter tuning for random_forest: 15 iterations, 5-fold CV, scoring=roc_auc
+2026-11-21 12:58:35 | INFO     | __main__ | Scoring metric: roc_auc
+2026-11-21 12:58:55 | INFO     | __main__ |   Best CV roc_auc: 0.8471
+2026-11-21 12:58:55 | INFO     | __main__ |   Best params: {'max_depth': 7, 'max_features': 'sqrt', 'min_samples_leaf': 4, 'min_samples_split': 9, 'n_estimators': 230}
+2026-11-21 12:58:56 | INFO     | __main__ | MLflow run: 757b0fda
+2026-11-21 12:58:56 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:56 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:58:56 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:56 | INFO     | src.models.evaluate |   accuracy            : 0.7594
+2026-11-21 12:58:56 | INFO     | src.models.evaluate |   precision           : 0.5321
+2026-11-21 12:58:56 | INFO     | src.models.evaluate |   recall              : 0.7754
+2026-11-21 12:58:56 | INFO     | src.models.evaluate |   f1_score            : 0.6311
+2026-11-21 12:58:56 | INFO     | src.models.evaluate |   roc_auc             : 0.8423
+2026-11-21 12:58:56 | INFO     | src.models.evaluate |   avg_precision       : 0.6462
+2026-11-21 12:58:56 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:56 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:56 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:58:56 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:56 | INFO     | src.models.evaluate |   accuracy            : 0.7594
+2026-11-21 12:58:56 | INFO     | src.models.evaluate |   precision           : 0.5321
+2026-11-21 12:58:56 | INFO     | src.models.evaluate |   recall              : 0.7754
+2026-11-21 12:58:56 | INFO     | src.models.evaluate |   f1_score            : 0.6311
+2026-11-21 12:58:56 | INFO     | src.models.evaluate |   roc_auc             : 0.8423
+2026-11-21 12:58:56 | INFO     | src.models.evaluate |   avg_precision       : 0.6462
+2026-11-21 12:58:56 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:58:56 | INFO     | src.models.evaluate | Confusion matrix saved to: D:\Python\ai-project\reports\figures\random_forest\confusion_matrix.png
+2026-11-21 12:58:57 | INFO     | src.models.evaluate | ROC curve saved to: D:\Python\ai-project\reports\figures\random_forest\roc_curve.png
+2026-11-21 12:58:57 | INFO     | src.models.evaluate | Feature importance plot saved to D:\Python\ai-project\reports\figures\random_forest\feature_importance.png
+2026-11-21 12:58:57 | INFO     | src.models.evaluate | 
+              precision    recall  f1-score   support
+
+    No Churn       0.90      0.75      0.82      1035
+       Churn       0.53      0.78      0.63       374
+
+    accuracy                           0.76      1409
+   macro avg       0.72      0.76      0.73      1409
+weighted avg       0.80      0.76      0.77      1409
+
+2026-11-21 12:58:58 | INFO     | __main__ | Test ROC-AUC: 0.8423
+2026-11-21 12:58:58 | INFO     | __main__ | Test F1-Score: 0.6311
+2026-11-21 12:58:58 | INFO     | __main__ | Best model: random_forest (ROC-AUC = 0.8423)
+2026-11-21 12:58:58 | INFO     | __main__ | Model saved      -> models/best_model.pkl
+2026-11-21 12:58:58 | INFO     | __main__ | Preprocessor saved -> models/preprocessor.pkl
+2026-11-21 12:58:58 | INFO     | __main__ | Model Comparison:
+2026-11-21 12:58:58 | INFO     | __main__ |   Model                       CV AUC   ROC-AUC      F1  Precision   Recall
+2026-11-21 12:58:58 | INFO     | __main__ |   -----------------------------------------------------------------
+2026-11-21 12:58:58 | INFO     | __main__ |   random_forest               0.8471    0.8423  0.6311     0.5321   0.7754 <- BEST
+2026-11-21 12:58:58 | INFO     | __main__ |   logistic_regression         0.8462    0.8416  0.6130     0.4992   0.7941
+2026-11-21 12:58:58 | INFO     | __main__ |   xgboost                     0.8468    0.8415  0.6258     0.5363   0.7513
+2026-11-21 12:58:58 | INFO     | __main__ | Training pipeline complete!
+2026-11-21 12:58:58 | INFO     | __main__ | Run: mlflow ui --port 5000  ->  http://localhost:5000
+2026-11-21 12:58:58 | INFO     | __main__ | ============================================================
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   accuracy            : 0.8000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   precision           : 0.8000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   recall              : 0.8000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   f1_score            : 0.8000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   roc_auc             : 0.9600
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   avg_precision       : 0.9667
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   accuracy            : 0.8000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   precision           : 0.8000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   recall              : 0.8000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   f1_score            : 0.8000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   roc_auc             : 0.9600
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   avg_precision       : 0.9667
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   accuracy            : 0.8000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   precision           : 0.8000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   recall              : 0.8000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   f1_score            : 0.8000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   roc_auc             : 0.9600
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   avg_precision       : 0.9667
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   accuracy            : 1.0000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   precision           : 1.0000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   recall              : 1.0000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   f1_score            : 1.0000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   roc_auc             : 1.0000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   avg_precision       : 1.0000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | ==================================================
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   accuracy            : 0.8000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   precision           : 0.8000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   recall              : 0.8000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   f1_score            : 0.8000
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   roc_auc             : 0.9600
+2026-11-21 12:59:16 | INFO     | src.models.evaluate |   avg_precision       : 0.9667
+2026-11-21 12:59:16 | INFO     | src.models.evaluate | ==================================================
