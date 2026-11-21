@@ -47,7 +47,6 @@ model:
     learning_rate: 0.05
     subsample: 0.8
     colsample_bytree: 0.8
-    use_label_encoder: false
     eval_metric: "logloss"
     random_state: 42
     scale_pos_weight: 2.5   # handle class imbalance
@@ -73,6 +72,10 @@ api:
 feature_thresholds:
   monthly_charges_median: null  
 
+mlflow:
+  tracking_uri: "mlruns"
+  experiment_name: "churn_prediction"
+
 logging:
   level: "INFO"
   format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -81,6 +84,10 @@ tuning:
   n_iter: 15 
   cv_folds: 5
   scoring: "roc_auc"
+  random_state: 42
+  # Int params -> scipy randint(low, high): samples [low, high).
+  # Float params -> scipy uniform(loc, scale): samples [loc, loc + scale].
+  # Checked: every [a, b] pair below is valid as (loc, scale) / (low, high).
 
   xgboost:
     n_estimators: [100, 500]
@@ -92,7 +99,7 @@ tuning:
 
   logistic_regression:
     C: [0.01, 9.99]
-    solver: ["liblinear", "lbfgs", "sage"]
+    solver: ["liblinear", "lbfgs", "saga"]
     penalty: ["l2"]
 
   random_forest:
