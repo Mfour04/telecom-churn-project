@@ -39,6 +39,12 @@ def load_config(config_path: str = "configs/config.yaml") -> dict:
         return yaml.safe_load(f)
 
 
+def resolve_path(path: str) -> Path:
+    """Resolve a relative path against the project root (absolute paths are returned as-is)."""
+    p = Path(path)
+    return p if p.is_absolute() else _PROJECT_ROOT / p
+
+
 # Data Loading 
 
 def load_data(filepath: str) -> pd.DataFrame:
