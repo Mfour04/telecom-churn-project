@@ -3,11 +3,12 @@ import pandas as pd
 import numpy as np 
 import sys
 from pathlib import Path
-_PROJECT_ROOT = Path(__file__).resolve().parents[2]
-if str(_PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(_PROJECT_ROOT))
 sys.path.append(str(Path(__file__).parent.parent))
 from src.data.preprocessing import clean_data, feature_engineering
+
+@pytest.fixture
+def thresholds():
+    return {"monthly_charges_median": 70.5}
 
 @pytest.fixture
 def sample_df():
@@ -58,24 +59,24 @@ class TestCleanData:
         assert df.shape[0] == sample_df.shape[0]
 
 class TestFeatureEngineering:
-    def test_tenure_group_created(self, sample_df):
+    def test_tenure_group_created(self, sample_df, thresholds):
         df = clean_data(sample_df)
-        df_fe = feature_engineering(df)
+        df_fe = feature_engineering(df, thresholds)
         assert "tenure_group" in df_fe.columns, "tenure_group should be created"
 
-    def test_num_services_created(self, sample_df):
+    def test_num_services_created(self, sample_df, thresholds):
         df = clean_data(sample_df)
-        df = feature_engineering(df)
+        df = feature_engineering(df, thresholds)
         assert "num_services" in df.columns, "num_services should be created"
         assert (df["num_services"] >= 0).all()
 
-    def test_charge_per_service_positive(self, sample_df):
+    def test_charge_per_service_positive(self, sample_df, thresholds):
         df = clean_data(sample_df)
-        df = feature_engineering(df)
+        df = feature_engineering(df, thresholds)
         assert (df["charge_per_service"] > 0).all()
     
-    def test_no_nulls_after_engineering(self, sample_df):
+    def test_no_nulls_after_engineering(self, sample_df, thresholds):
         df = clean_data(sample_df)
-        df = feature_engineering(df)
-        for col in ["nume_service", "high_charges", "charge_per_service"]:
+        df = feature_engineering(df, thresholds)
+        for col in ["num_services", "high_charges", "charge_per_service"]:
             assert df[col].isna().sum() == 0, f"Nulls in {col}"

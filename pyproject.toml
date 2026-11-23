@@ -19,3 +19,8 @@ dependencies = [
     "uvicorn>=0.48.0",
     "xgboost>=3.2.0",
 ]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+]

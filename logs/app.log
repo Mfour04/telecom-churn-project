@@ -887,3 +887,176 @@ weighted avg       0.80      0.76      0.77      1409
 2026-11-21 12:59:16 | INFO     | src.models.evaluate |   roc_auc             : 0.9600
 2026-11-21 12:59:16 | INFO     | src.models.evaluate |   avg_precision       : 0.9667
 2026-11-21 12:59:16 | INFO     | src.models.evaluate | ==================================================
+2026-11-23 13:26:20 | INFO     | src.api.main | Starting up FastAPI
+2026-11-23 13:26:20 | INFO     | src.api.main | Model loaded from models\best_model.pkl
+2026-11-23 13:26:20 | INFO     | src.api.main | Preprocessor loaded from models\preprocessor.pkl
+2026-11-23 13:26:21 | INFO     | src.data.preprocessing | Loaded feature thresholds from models/feature_thresholds.yaml: {'monthly_charges_median': 70.5}
+2026-11-23 13:26:21 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-23 13:26:21 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 0.0% of records flagged as high
+2026-11-23 13:26:21 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-11-23 13:26:21 | INFO     | src.data.preprocessing | Loaded feature thresholds from models/feature_thresholds.yaml: {'monthly_charges_median': 70.5}
+2026-11-23 13:26:21 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-23 13:26:21 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 0.0% of records flagged as high
+2026-11-23 13:26:21 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-11-23 13:26:22 | INFO     | src.data.preprocessing | Loaded feature thresholds from models/feature_thresholds.yaml: {'monthly_charges_median': 70.5}
+2026-11-23 13:26:22 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-23 13:26:22 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 0.0% of records flagged as high
+2026-11-23 13:26:22 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-11-23 13:29:48 | INFO     | src.api.main | Starting up FastAPI
+2026-11-23 13:29:48 | INFO     | src.api.main | Model loaded from models\best_model.pkl
+2026-11-23 13:29:48 | INFO     | src.api.main | Preprocessor loaded from models\preprocessor.pkl
+2026-11-23 13:29:48 | INFO     | src.api.main | API shut down.
+2026-11-23 13:29:48 | INFO     | src.api.main | Starting up FastAPI
+2026-11-23 13:29:48 | INFO     | src.api.main | Model loaded from models\best_model.pkl
+2026-11-23 13:29:48 | INFO     | src.api.main | Preprocessor loaded from models\preprocessor.pkl
+2026-11-23 13:29:48 | INFO     | src.api.main | API shut down.
+2026-11-23 13:29:48 | INFO     | src.api.main | Starting up FastAPI
+2026-11-23 13:29:48 | INFO     | src.api.main | Model loaded from models\best_model.pkl
+2026-11-23 13:29:48 | INFO     | src.api.main | Preprocessor loaded from models\preprocessor.pkl
+2026-11-23 13:29:49 | INFO     | src.api.main | API shut down.
+2026-11-23 13:29:49 | INFO     | src.api.main | Starting up FastAPI
+2026-11-23 13:29:49 | INFO     | src.api.main | Model loaded from models\best_model.pkl
+2026-11-23 13:29:49 | INFO     | src.api.main | Preprocessor loaded from models\preprocessor.pkl
+2026-11-23 13:29:49 | INFO     | src.api.main | API shut down.
+2026-11-23 13:29:49 | INFO     | src.api.main | Starting up FastAPI
+2026-11-23 13:29:49 | INFO     | src.api.main | Model loaded from models\best_model.pkl
+2026-11-23 13:29:49 | INFO     | src.api.main | Preprocessor loaded from models\preprocessor.pkl
+2026-11-23 13:29:49 | INFO     | src.data.preprocessing | Loaded feature thresholds from models/feature_thresholds.yaml: {'monthly_charges_median': 70.5}
+2026-11-23 13:29:49 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-23 13:29:49 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 0.0% of records flagged as high
+2026-11-23 13:29:49 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-11-23 13:29:49 | INFO     | src.api.main | API shut down.
+2026-11-23 13:29:49 | INFO     | src.api.main | Starting up FastAPI
+2026-11-23 13:29:49 | INFO     | src.api.main | Model loaded from models\best_model.pkl
+2026-11-23 13:29:49 | INFO     | src.api.main | Preprocessor loaded from models\preprocessor.pkl
+2026-11-23 13:29:49 | INFO     | src.api.main | API shut down.
+2026-11-23 13:29:49 | INFO     | src.api.main | Starting up FastAPI
+2026-11-23 13:29:49 | INFO     | src.api.main | Model loaded from models\best_model.pkl
+2026-11-23 13:29:49 | INFO     | src.api.main | Preprocessor loaded from models\preprocessor.pkl
+2026-11-23 13:29:49 | INFO     | src.api.main | API shut down.
+2026-11-23 13:29:49 | INFO     | src.api.main | Starting up FastAPI
+2026-11-23 13:29:49 | INFO     | src.api.main | Model loaded from models\best_model.pkl
+2026-11-23 13:29:49 | INFO     | src.api.main | Preprocessor loaded from models\preprocessor.pkl
+2026-11-23 13:29:49 | INFO     | src.api.main | API shut down.
+2026-11-23 13:29:49 | INFO     | src.api.main | Starting up FastAPI
+2026-11-23 13:29:49 | INFO     | src.api.main | Model loaded from models\best_model.pkl
+2026-11-23 13:29:49 | INFO     | src.api.main | Preprocessor loaded from models\preprocessor.pkl
+2026-11-23 13:29:49 | INFO     | src.data.preprocessing | Loaded feature thresholds from models/feature_thresholds.yaml: {'monthly_charges_median': 70.5}
+2026-11-23 13:29:49 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-23 13:29:49 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 0.0% of records flagged as high
+2026-11-23 13:29:49 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-11-23 13:29:49 | INFO     | src.api.main | API shut down.
+2026-11-23 13:29:49 | INFO     | src.api.main | Starting up FastAPI
+2026-11-23 13:29:49 | INFO     | src.api.main | Model loaded from models\best_model.pkl
+2026-11-23 13:29:49 | INFO     | src.api.main | Preprocessor loaded from models\preprocessor.pkl
+2026-11-23 13:29:49 | INFO     | src.data.preprocessing | Loaded feature thresholds from models/feature_thresholds.yaml: {'monthly_charges_median': 70.5}
+2026-11-23 13:29:49 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-23 13:29:49 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 0.0% of records flagged as high
+2026-11-23 13:29:49 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Loaded feature thresholds from models/feature_thresholds.yaml: {'monthly_charges_median': 70.5}
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 0.0% of records flagged as high
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 23
+2026-11-23 13:29:50 | INFO     | src.api.main | API shut down.
+2026-11-23 13:29:50 | INFO     | src.api.main | Starting up FastAPI
+2026-11-23 13:29:50 | INFO     | src.api.main | Model loaded from models\best_model.pkl
+2026-11-23 13:29:50 | INFO     | src.api.main | Preprocessor loaded from models\preprocessor.pkl
+2026-11-23 13:29:50 | INFO     | src.api.main | API shut down.
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | ==================================================
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | ==================================================
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   accuracy            : 0.8000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   precision           : 0.8000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   recall              : 0.8000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   f1_score            : 0.8000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   roc_auc             : 0.9600
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   avg_precision       : 0.9667
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | ==================================================
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | ==================================================
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | ==================================================
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   accuracy            : 0.8000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   precision           : 0.8000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   recall              : 0.8000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   f1_score            : 0.8000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   roc_auc             : 0.9600
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   avg_precision       : 0.9667
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | ==================================================
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | ==================================================
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | ==================================================
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   accuracy            : 0.8000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   precision           : 0.8000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   recall              : 0.8000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   f1_score            : 0.8000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   roc_auc             : 0.9600
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   avg_precision       : 0.9667
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | ==================================================
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | ==================================================
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | ==================================================
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   accuracy            : 1.0000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   precision           : 1.0000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   recall              : 1.0000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   f1_score            : 1.0000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   roc_auc             : 1.0000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   avg_precision       : 1.0000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | ==================================================
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | ==================================================
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | MODEL EVALUATION METRICS
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | ==================================================
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   accuracy            : 0.8000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   precision           : 0.8000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   recall              : 0.8000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   f1_score            : 0.8000
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   roc_auc             : 0.9600
+2026-11-23 13:29:50 | INFO     | src.models.evaluate |   avg_precision       : 0.9667
+2026-11-23 13:29:50 | INFO     | src.models.evaluate | ==================================================
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Cleaning data...
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Imputed 1 missing TotalCharges using MonthlyCharges x tenure (all were tenure=0 -> result=0.0)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | After cleaning - nulls: 0 | churn rate: 33.3%
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Cleaning data...
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Imputed 1 missing TotalCharges using MonthlyCharges x tenure (all were tenure=0 -> result=0.0)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | After cleaning - nulls: 0 | churn rate: 33.3%
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Cleaning data...
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Imputed 1 missing TotalCharges using MonthlyCharges x tenure (all were tenure=0 -> result=0.0)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | After cleaning - nulls: 0 | churn rate: 33.3%
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Cleaning data...
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Imputed 1 missing TotalCharges using MonthlyCharges x tenure (all were tenure=0 -> result=0.0)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | After cleaning - nulls: 0 | churn rate: 33.3%
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Cleaning data...
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Imputed 1 missing TotalCharges using MonthlyCharges x tenure (all were tenure=0 -> result=0.0)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | After cleaning - nulls: 0 | churn rate: 33.3%
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Cleaning data...
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Imputed 1 missing TotalCharges using MonthlyCharges x tenure (all were tenure=0 -> result=0.0)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | After cleaning - nulls: 0 | churn rate: 33.3%
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 33.3% of records flagged as high
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 24
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Cleaning data...
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Imputed 1 missing TotalCharges using MonthlyCharges x tenure (all were tenure=0 -> result=0.0)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | After cleaning - nulls: 0 | churn rate: 33.3%
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 33.3% of records flagged as high
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 24
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Cleaning data...
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Imputed 1 missing TotalCharges using MonthlyCharges x tenure (all were tenure=0 -> result=0.0)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | After cleaning - nulls: 0 | churn rate: 33.3%
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 33.3% of records flagged as high
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 24
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Cleaning data...
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Imputed 1 missing TotalCharges using MonthlyCharges x tenure (all were tenure=0 -> result=0.0)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Dropped customerID (not predictive)
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | After cleaning - nulls: 0 | churn rate: 33.3%
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Engineering features...
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | high_charges threshold (train median): 70.50$ -> 33.3% of records flagged as high
+2026-11-23 13:29:50 | INFO     | src.data.preprocessing | Features added: tenure_group, high_charges, num_services, charge_per_service | Total columns: 24
