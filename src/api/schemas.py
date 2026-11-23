@@ -1,5 +1,5 @@
 #Pydantic schemas for FastAPI request/response validation
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Optional, List
 from enum import Enum
 
@@ -27,7 +27,7 @@ class AddOnServiceEnum(str, Enum):
     no_internet = "No internet service"
 
 class ContractEnum(str, Enum):
-    month_to_month = "Month to month"
+    month_to_month = "Month-to-month"
     one_year = "One year"
     two_year = "Two year"
 
@@ -41,7 +41,7 @@ class CustomerFeatures(BaseModel):
     #Input feature for churn prediction
 
     gender: GenderEnum = Field(..., description="Customer gender")
-    SeniorCitizen: int = Field(..., description="Is senior city (0 or 1)")
+    SeniorCitizen: int = Field(..., ge=0, le=1, description="Is senior city (0 or 1)")
     Partner: YesNoEnum = Field(..., description="Has partner")
     Dependents: YesNoEnum = Field(..., description="Has dependent")
     tenure: int = Field(..., ge=0, le=100 ,description="Month as customer")
@@ -60,8 +60,8 @@ class CustomerFeatures(BaseModel):
     MonthlyCharges: float = Field(..., ge=0, description="Monthly charges in USD")
     TotalCharges: float = Field(..., ge=0, description="Total charges in USD")
 
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "gender": "Female",
                 "SeniorCitizen": 0,
@@ -84,6 +84,7 @@ class CustomerFeatures(BaseModel):
                 "TotalCharges": 844.20
             }
         }
+    )
 
 class PredictionResponse(BaseModel): 
     #Prediction result for a single customer
@@ -97,7 +98,7 @@ class BatchPredictionRequest(BaseModel):
     #Batch prediction request.
     customers: List[CustomerFeatures] = Field(..., min_length=1, max_length=500)
 
-class BatchPredictResponse(BaseModel):
+class BatchPredictionResponse(BaseModel):
     #Batch prediction response.
     total: int
     churn_count: int 

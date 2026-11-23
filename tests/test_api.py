@@ -37,7 +37,8 @@ def client():
     """Create FastAPI test client."""
     from fastapi.testclient import TestClient
     from src.api.main import app
-    return TestClient(app)
+    with TestClient(app) as c:
+        yield c
 
 
 class TestRootEndpoint:
@@ -46,7 +47,7 @@ class TestRootEndpoint:
         assert response.status_code == 200
 
     def test_root_has_version(self, client):
-        data = response = client.get("/").json()
+        data = client.get("/").json()
         assert "version" in data
 
 
